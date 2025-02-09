@@ -1,4 +1,5 @@
 {
     "@@locale": "en",
-    "app_title" : "Sleep Control App"
+    "app_title" : "Sleep Control App",
+    "email_text_field_hint" : "Enter your email..."
 }
