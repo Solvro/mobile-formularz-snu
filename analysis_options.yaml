@@ -8,5 +8,4 @@ linter:
     prefer_double_quotes: true
     use_setters_to_change_properties: false
     lines_longer_than_80_chars: true
-    sort_pub_dependencies: true
-    
+    sort_pub_dependencies: false
