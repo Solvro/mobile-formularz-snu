@@ -1,0 +1,12 @@
+include: package:flutter_lints/flutter.yaml
+
+linter:
+  rules:
+    prefer_relative_imports: false
+    avoid_relative_lib_imports: true
+    prefer_single_quotes: false
+    prefer_double_quotes: true
+    use_setters_to_change_properties: false
+    lines_longer_than_80_chars: true
+    sort_pub_dependencies: true
+    
