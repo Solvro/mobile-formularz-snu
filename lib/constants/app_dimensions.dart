@@ -10,4 +10,8 @@ class AppDimensions {
 
   static const double borderRadiusMedium = 12.0;
 
+  static const double fontSizeSmall = 18;
+  static const double fontSizeMedium = 22;
+  static const double fontSizeBig = 26;
+
 }

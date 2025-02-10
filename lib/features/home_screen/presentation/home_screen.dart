@@ -2,6 +2,7 @@ import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
 import "package:sleep_app/constants/app_dimensions.dart";
 import "package:sleep_app/extensions/context_extensions.dart";
+import "package:sleep_app/navigation/app_router.dart";
 
 @RoutePage()
 class HomeScreen extends StatelessWidget {
@@ -21,9 +22,9 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
             SizedBox(height: AppDimensions.heightMedium),
-            ElevatedButton(
-              onPressed: () {}, 
-              child: Text("Dalej"),
+            TextButton(
+              child:Text(context.localize.next),
+              onPressed: () => context.router.push(const QuestionsRoute()), 
             ),
           ],
         ),

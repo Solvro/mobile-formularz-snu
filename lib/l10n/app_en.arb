@@ -1,5 +1,37 @@
 {
     "@@locale": "en",
     "app_title" : "Sleep Control App",
-    "email_text_field_hint" : "Enter your email..."
+    "email_text_field_hint" : "Enter your email...",
+
+    "questions" : "Questions",
+
+    "go_to_bed_time_id" : "Going to bed",
+    "go_to_bed_time" : "The time you went to bed last night",
+
+    "go_sleep_time_id" : "Falling asleep",
+    "go_sleep_time" : "The time you fell asleep last night",
+
+    "fall_asleep_time_id" : "Time to fall asleep",
+    "fall_asleep_time" : "How long did it take you to fall asleep?",
+
+    "awakening_times_id" : "Awakenings",
+    "awakening_times" : "How many times did you wake up during the night?",
+
+    "awakening_time_total_id" : "Total awakening time",
+    "awakening_time_total" : "How long did these awakenings last in total?",
+
+    "wake_up_time_id" : "Waking up",
+    "wake_up_time" : "What time did you wake up in the morning?",
+
+    "leave_bed_time_id" : "Getting out of bed",
+    "leave_bed_time" : "What time did you get out of bed?",
+
+    "sleep_rate_id" : "Sleep quality",
+    "sleep_rate" : "How would you rate your sleep quality? (0-5)",
+
+    "time_hint" : "Time (for example 7:30 or 22:15)",
+
+    "next" : "Next",
+
+    "time_format_error" : "Please enter a valid time in HH:MM format"
 }

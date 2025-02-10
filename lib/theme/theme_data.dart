@@ -14,8 +14,8 @@ final ThemeData customTheme = ThemeData (
 
 
   textTheme: TextTheme(
-    headlineMedium: TextStyle(fontSize: 26, fontWeight: FontWeight.bold, color: dark),
-    bodyMedium: TextStyle(fontSize: 18, color: dark),
+    headlineMedium: TextStyle(fontSize: AppDimensions.fontSizeBig, fontWeight: FontWeight.bold, color: light),
+    bodyMedium: TextStyle(fontSize: AppDimensions.fontSizeSmall, color: light),
   ),
 
 
@@ -35,9 +35,30 @@ final ThemeData customTheme = ThemeData (
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(AppDimensions.borderRadiusMedium),
       ),
-      textStyle: TextStyle(fontSize: 20),
+      textStyle: TextStyle(fontSize: AppDimensions.fontSizeMedium),
     ),
   ),
 
 
+  snackBarTheme: SnackBarThemeData(
+    backgroundColor: lighterDark,
+    contentTextStyle: TextStyle(color: light, fontSize: 18),
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(AppDimensions.borderRadiusMedium),
+    ),
+    behavior: SnackBarBehavior.floating,
+    elevation: 5, 
+  ),
+
+  textButtonTheme: TextButtonThemeData(
+    style: TextButton.styleFrom(
+      padding: EdgeInsets.symmetric(vertical: AppDimensions.paddingSmall, horizontal: AppDimensions.paddingBig),
+      backgroundColor: amethyst,
+      foregroundColor: dark,
+      textStyle: TextStyle(fontSize: AppDimensions.fontSizeSmall),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(AppDimensions.borderRadiusMedium),
+      ),
+    ),
+  ),
 );

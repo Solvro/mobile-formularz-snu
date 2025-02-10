@@ -25,3 +25,19 @@ class HomeRoute extends PageRouteInfo<void> {
     },
   );
 }
+
+/// generated route for
+/// [QuestionsScreen]
+class QuestionsRoute extends PageRouteInfo<void> {
+  const QuestionsRoute({List<PageRouteInfo>? children})
+    : super(QuestionsRoute.name, initialChildren: children);
+
+  static const String name = 'QuestionsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const QuestionsScreen();
+    },
+  );
+}
