@@ -2,6 +2,7 @@
     "@@locale": "en",
     "app_title" : "Sleep Control App",
     "email_text_field_hint" : "Enter your email...",
+    "email_error" : "You have to pass a valid email...",
 
     "questions" : "Questions",
 

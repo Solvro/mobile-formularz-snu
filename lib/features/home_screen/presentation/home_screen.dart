@@ -5,9 +5,18 @@ import "package:sleep_app/extensions/context_extensions.dart";
 import "package:sleep_app/navigation/app_router.dart";
 
 @RoutePage()
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+
+class _HomeScreenState extends State<HomeScreen> {
+  final TextEditingController emailController = TextEditingController();
+  String? errorText;
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,18 +26,34 @@ class HomeScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             TextField(
+              controller: emailController,
               decoration: InputDecoration(
-                hintText: context.localize.email_text_field_hint,
+                helperText: context.localize.email_text_field_hint,
+                //hintText: context.localize.email_text_field_hint,
+                errorText: errorText,
               ),
             ),
             SizedBox(height: AppDimensions.heightMedium),
             TextButton(
               child:Text(context.localize.next),
-              onPressed: () => context.router.push(const QuestionsRoute()), 
+              onPressed: () {
+
+                String email = emailController.text.trim();
+                final bool emailValid = RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(email);
+
+                setState(() {
+                  if (email.isNotEmpty && emailValid) {
+                    errorText = null;
+                    context.router.push(const QuestionsRoute());
+                  } else {
+                    errorText = context.localize.email_error;
+                  }
+                });
+              },
             ),
           ],
         ),
       ),
     );
-  }  
+  }
 }
