@@ -1,5 +1,23 @@
 {
     "@@locale": "pl",
     "app_title" : "Apka do snu",
-    "email_text_field_hint" : "Podaj swojego maila..."
+    "email_text_field_hint" : "Podaj swojego maila...",
+
+    "questions" : "Pytania",
+
+    "questions_headline" : "😴 Prosze wypełnij ankietę 😴",
+
+    "go_to_bed_time" : "Godzina, o której położyłeś się do łóżka wczoraj wieczorem",
+    "go_sleep_time" : "Godzina, o której poszedłeś spać wczoraj wieczorem",
+    "fall_asleep_time" : "Jak długo zajęło Ci, żeby zasnąć?",
+    "awakening_times" : "Ile razy wybudzałeś się ze snu?",
+    "awakening_time_total" : "Jak długo łącznie trwały te wybudzenia w łóżku?",
+    "wake_up_time" : "O której godzinie obudziłeś się rano?",
+    "leave_bed_time" : "O której godzinie wstałeś z łóżka?",
+    "sleep_rate" : "Jak oceniasz jakość swojego snu? (0-5)",
+
+    "next" : "Dalej",
+    "submit" : "Prześlij",
+    "cancel" : "Anuluj"
+
 }
