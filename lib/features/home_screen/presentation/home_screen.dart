@@ -3,6 +3,7 @@ import "package:flutter/material.dart";
 import "package:sleep_app/constants/app_dimensions.dart";
 import "package:sleep_app/extensions/context_extensions.dart";
 import "package:sleep_app/navigation/app_router.dart";
+import "package:sleep_app/theme/app_colors.dart";
 
 @RoutePage()
 class HomeScreen extends StatefulWidget {
@@ -29,7 +30,6 @@ class _HomeScreenState extends State<HomeScreen> {
               controller: emailController,
               decoration: InputDecoration(
                 helperText: context.localize.email_text_field_hint,
-                //hintText: context.localize.email_text_field_hint,
                 errorText: errorText,
               ),
             ),
@@ -52,6 +52,14 @@ class _HomeScreenState extends State<HomeScreen> {
               },
             ),
           ],
+        ),
+      ),
+      floatingActionButton: Padding(
+        padding: EdgeInsets.only(bottom: AppDimensions.paddingMedium, right: AppDimensions.paddingMedium),
+        child: FloatingActionButton(
+          onPressed: () {},
+          backgroundColor: amethyst,
+          child: Icon(Icons.alarm, color: dark),
         ),
       ),
     );
