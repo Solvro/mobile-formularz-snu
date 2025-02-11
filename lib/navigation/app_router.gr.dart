@@ -41,3 +41,19 @@ class QuestionsRoute extends PageRouteInfo<void> {
     },
   );
 }
+
+/// generated route for
+/// [ThankYouScreen]
+class ThankYouRoute extends PageRouteInfo<void> {
+  const ThankYouRoute({List<PageRouteInfo>? children})
+    : super(ThankYouRoute.name, initialChildren: children);
+
+  static const String name = 'ThankYouRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const ThankYouScreen();
+    },
+  );
+}

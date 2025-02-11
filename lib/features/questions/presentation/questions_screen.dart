@@ -3,6 +3,7 @@ import "package:flutter/material.dart";
 import "package:flutter_form_builder/flutter_form_builder.dart";
 import "package:sleep_app/constants/app_dimensions.dart";
 import "package:sleep_app/extensions/context_extensions.dart";
+import "package:sleep_app/navigation/app_router.dart";
 import "package:sleep_app/theme/app_colors.dart";
 
 @RoutePage()
@@ -139,7 +140,7 @@ class QuestionsScreen extends StatelessWidget {
                   SizedBox(width: AppDimensions.heightMedium,), 
                   TextButton(
                     child: Text(context.localize.submit),
-                    onPressed: () => (),
+                    onPressed: () => context.router.push(const ThankYouRoute()),
                   ),
                 ],
               ),

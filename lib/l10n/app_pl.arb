@@ -16,8 +16,11 @@
     "leave_bed_time" : "O której godzinie wstałeś z łóżka?",
     "sleep_rate" : "Jak oceniasz jakość swojego snu? (0-5)",
 
+    "thank_you" : "Dziękujemy za wypełnienie dzisiejszej ankiety! Do zobaczenia jutro!",
+    "final_emotes" : "😊🎊💪🚀",
+
     "next" : "Dalej",
     "submit" : "Prześlij",
-    "cancel" : "Anuluj"
-
+    "cancel" : "Anuluj",
+    "back" : "Back"
 }
