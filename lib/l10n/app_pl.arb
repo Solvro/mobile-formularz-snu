@@ -5,34 +5,19 @@
 
     "questions" : "Pytania",
 
-    "go_to_bed_time_id" : "Położenie się do łóżka",
+    "questions_headline" : "😴 Prosze wypełnij ankietę 😴",
+
     "go_to_bed_time" : "Godzina, o której położyłeś się do łóżka wczoraj wieczorem",
-
-    "go_sleep_time_id" : "Pójście spać",
     "go_sleep_time" : "Godzina, o której poszedłeś spać wczoraj wieczorem",
-
-    "fall_asleep_time_id" : "Zaśnięcie",
     "fall_asleep_time" : "Jak długo zajęło Ci, żeby zasnąć?",
-
-    "awakening_times_id" : "Przebudzanie się",
     "awakening_times" : "Ile razy wybudzałeś się ze snu?",
-
-    "awakening_time_total_id" : "Czas przebudzeń",
     "awakening_time_total" : "Jak długo łącznie trwały te wybudzenia w łóżku?",
-
-    "wake_up_time_id" : "Obudzenie się",
     "wake_up_time" : "O której godzinie obudziłeś się rano?",
-
-    "leave_bed_time_id" : "Wstanie z łóżka",
     "leave_bed_time" : "O której godzinie wstałeś z łóżka?",
-
-    "sleep_rate_id" : "Jakość snu",
     "sleep_rate" : "Jak oceniasz jakość swojego snu? (0-5)",
 
-    "time_hint" : "Godzina (na przykład 7:30 lub 22:15)",
-
     "next" : "Dalej",
-
-    "time_format_error" : "Prosze wpisz prawidłowy format czasu HH:MM"
+    "submit" : "Prześlij",
+    "cancel" : "Anuluj"
 
 }
