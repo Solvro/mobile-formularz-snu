@@ -20,6 +20,18 @@
     "thank_you" : "Dziękujemy za wypełnienie dzisiejszej ankiety! Do zobaczenia jutro!",
     "final_emotes" : "😊🎊💪🚀",
 
+    "alarm_settings" : "Ustawienia budzika", 
+    "enable_alarm" : "Włącz alarm",
+    "alarm_time": "Budzik: {time}",
+    "@alarm_time": {
+        "description": "Shows daily alarm time",
+        "placeholders": {
+            "time": {}
+        }
+    },
+    "save_alarm": "Zapisz budzik",
+    "alarm_settings_saved" : "Ustawienia budzika zapisane!",
+
     "next" : "Dalej",
     "submit" : "Prześlij",
     "cancel" : "Anuluj",

@@ -11,6 +11,22 @@
 part of 'app_router.dart';
 
 /// generated route for
+/// [AlarmScreen]
+class AlarmRoute extends PageRouteInfo<void> {
+  const AlarmRoute({List<PageRouteInfo>? children})
+    : super(AlarmRoute.name, initialChildren: children);
+
+  static const String name = 'AlarmRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return AlarmScreen();
+    },
+  );
+}
+
+/// generated route for
 /// [HomeScreen]
 class HomeRoute extends PageRouteInfo<void> {
   const HomeRoute({List<PageRouteInfo>? children})

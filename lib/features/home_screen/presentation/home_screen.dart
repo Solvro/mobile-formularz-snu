@@ -57,7 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
       floatingActionButton: Padding(
         padding: EdgeInsets.only(bottom: AppDimensions.paddingMedium, right: AppDimensions.paddingMedium),
         child: FloatingActionButton(
-          onPressed: () {},
+          onPressed: () => context.router.push(AlarmRoute()),
           backgroundColor: amethyst,
           child: Icon(Icons.alarm, color: dark),
         ),

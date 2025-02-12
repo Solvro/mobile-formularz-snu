@@ -20,6 +20,18 @@
     "thank_you" : "Thank you for filling in the survey! See You tomorrow!",
     "final_emotes" : "😊🎊💪🚀",
 
+    "alarm_settings" : "Alarm Settings", 
+    "enable_alarm" : "Enable alarm",
+    "alarm_time": "Alarm time: {time}",
+    "@alarm_time": {
+        "description": "Shows daily alarm time",
+        "placeholders": {
+            "time": {}
+        }
+    },
+    "save_alarm": "Save alarm",
+    "alarm_settings_saved" : "Alarm settings saved!",
+
     "next" : "Next",
     "submit" : "Submit",
     "cancel" : "Cancel",
