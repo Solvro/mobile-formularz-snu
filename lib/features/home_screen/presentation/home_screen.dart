@@ -10,14 +10,13 @@ class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
-
 
 class _HomeScreenState extends State<HomeScreen> {
   final TextEditingController emailController = TextEditingController();
   String? errorText;
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,11 +34,12 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             SizedBox(height: AppDimensions.heightMedium),
             TextButton(
-              child:Text(context.localize.next),
+              child: Text(context.localize.next),
               onPressed: () {
-
                 String email = emailController.text.trim();
-                final bool emailValid = RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(email);
+                final bool emailValid = RegExp(
+                        r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                    .hasMatch(email);
 
                 setState(() {
                   if (email.isNotEmpty && emailValid) {
@@ -55,7 +55,9 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       floatingActionButton: Padding(
-        padding: EdgeInsets.only(bottom: AppDimensions.paddingMedium, right: AppDimensions.paddingMedium),
+        padding: EdgeInsets.only(
+            bottom: AppDimensions.paddingMedium,
+            right: AppDimensions.paddingMedium),
         child: FloatingActionButton(
           onPressed: () => context.router.push(AlarmRoute()),
           backgroundColor: amethyst,

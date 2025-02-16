@@ -8,13 +8,13 @@ import "package:sleep_app/theme/app_colors.dart";
 
 @RoutePage()
 class AlarmScreen extends StatefulWidget {
+  const AlarmScreen({super.key});
 
   @override
   State<StatefulWidget> createState() => AlarmScreenState();
 }
 
 class AlarmScreenState extends State<AlarmScreen> {
-
   TimeOfDay selectedTime = TimeOfDay(hour: 8, minute: 0);
   bool isAlarmEnabled = false;
 
@@ -42,7 +42,6 @@ class AlarmScreenState extends State<AlarmScreen> {
   }
 
   Future<void> selectTime(BuildContext context) async {
-
     final TimeOfDay? picked = await showTimePicker(
       context: context,
       initialTime: selectedTime,
@@ -66,7 +65,9 @@ class AlarmScreenState extends State<AlarmScreen> {
     return Scaffold(
       appBar: AppBar(title: Text(context.localize.alarm_settings)),
       floatingActionButton: Padding(
-        padding: EdgeInsets.only(bottom: AppDimensions.paddingMedium, right: AppDimensions.paddingMedium),
+        padding: EdgeInsets.only(
+            bottom: AppDimensions.paddingMedium,
+            right: AppDimensions.paddingMedium),
         child: FloatingActionButton(
           onPressed: () async {
             await saveAlarmSettings();
@@ -75,7 +76,7 @@ class AlarmScreenState extends State<AlarmScreen> {
               SnackBar(content: Text(context.localize.alarm_settings_saved)),
             );
             context.router.popForced();
-          }, 
+          },
           backgroundColor: amethyst,
           child: Icon(Icons.done, color: dark),
         ),
@@ -98,8 +99,8 @@ class AlarmScreenState extends State<AlarmScreen> {
                 ),
               ],
             ),
-            if(isAlarmEnabled) SizedBox(height: AppDimensions.heightSmall),
-            if(isAlarmEnabled) 
+            if (isAlarmEnabled) SizedBox(height: AppDimensions.heightSmall),
+            if (isAlarmEnabled)
               GestureDetector(
                 onTap: () => selectTime(context),
                 child: Container(
