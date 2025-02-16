@@ -66,8 +66,9 @@ class AlarmScreenState extends State<AlarmScreen> {
       appBar: AppBar(title: Text(context.localize.alarm_settings)),
       floatingActionButton: Padding(
         padding: EdgeInsets.only(
-            bottom: AppDimensions.paddingMedium,
-            right: AppDimensions.paddingMedium),
+          bottom: AppDimensions.paddingMedium,
+          right: AppDimensions.paddingMedium,
+        ),
         child: FloatingActionButton(
           onPressed: () async {
             await saveAlarmSettings();

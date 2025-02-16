@@ -38,8 +38,8 @@ class _HomeScreenState extends State<HomeScreen> {
               onPressed: () {
                 String email = emailController.text.trim();
                 final bool emailValid = RegExp(
-                        r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                    .hasMatch(email);
+                  r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
+                ).hasMatch(email);
 
                 setState(() {
                   if (email.isNotEmpty && emailValid) {
@@ -56,8 +56,9 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       floatingActionButton: Padding(
         padding: EdgeInsets.only(
-            bottom: AppDimensions.paddingMedium,
-            right: AppDimensions.paddingMedium),
+          bottom: AppDimensions.paddingMedium,
+          right: AppDimensions.paddingMedium,
+        ),
         child: FloatingActionButton(
           onPressed: () => context.router.push(AlarmRoute()),
           backgroundColor: amethyst,
