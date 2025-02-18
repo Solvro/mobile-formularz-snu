@@ -15,15 +15,15 @@ class AlarmScreen extends StatefulWidget {
 }
 
 class AlarmScreenState extends State<AlarmScreen> {
-  TimeOfDay selectedTime = TimeOfDay(hour: 8, minute: 0);
+  TimeOfDay selectedTime = const TimeOfDay(hour: 8, minute: 0);
   bool isAlarmEnabled = false;
 
   Future<void> loadAlarmSettings() async {
     final prefs = await SharedPreferences.getInstance();
     setState(() {
       isAlarmEnabled = prefs.getBool("is_alarm_enabled") ?? false;
-      int hour = prefs.getInt("alarm_hour") ?? 8;
-      int minute = prefs.getInt("alarm_minutes") ?? 0;
+      final int hour = prefs.getInt("alarm_hour") ?? 8;
+      final int minute = prefs.getInt("alarm_minutes") ?? 0;
       selectedTime = TimeOfDay(hour: hour, minute: minute);
     });
   }
@@ -56,9 +56,9 @@ class AlarmScreenState extends State<AlarmScreen> {
   }
 
   @override
-  void initState() {
+  Future<void> initState() async {
     super.initState();
-    loadAlarmSettings();
+    await loadAlarmSettings();
   }
 
   @override
@@ -66,7 +66,7 @@ class AlarmScreenState extends State<AlarmScreen> {
     return Scaffold(
       appBar: AppBar(title: Text(context.localize.alarm_settings)),
       floatingActionButton: Padding(
-        padding: EdgeInsets.only(
+        padding: const EdgeInsets.only(
           bottom: AppDimensions.paddingMedium,
           right: AppDimensions.paddingMedium,
         ),
@@ -80,11 +80,12 @@ class AlarmScreenState extends State<AlarmScreen> {
             context.router.popForced();
           },
           backgroundColor: AppColors.amethyst,
-          child: Icon(Icons.done, color: AppColors.dark),
+          child: const Icon(Icons.done, color: AppColors.dark),
         ),
       ),
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: AppDimensions.paddingBig),
+        padding:
+            const EdgeInsets.symmetric(horizontal: AppDimensions.paddingBig),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -93,7 +94,7 @@ class AlarmScreenState extends State<AlarmScreen> {
               children: [
                 Text(
                   context.localize.enable_alarm,
-                  style: TextStyle(fontSize: AppDimensions.fontSizeSmall),
+                  style: const TextStyle(fontSize: AppDimensions.fontSizeSmall),
                 ),
                 Switch(
                   value: isAlarmEnabled,
@@ -101,12 +102,13 @@ class AlarmScreenState extends State<AlarmScreen> {
                 ),
               ],
             ),
-            if (isAlarmEnabled) SizedBox(height: AppDimensions.heightSmall),
+            if (isAlarmEnabled)
+              const SizedBox(height: AppDimensions.heightSmall),
             if (isAlarmEnabled)
               GestureDetector(
-                onTap: () => selectTime(context),
+                onTap: () async => selectTime(context),
                 child: Container(
-                  padding: EdgeInsets.symmetric(
+                  padding: const EdgeInsets.symmetric(
                     vertical: AppDimensions.paddingMedium,
                     horizontal: AppDimensions.paddingBig,
                   ),
@@ -121,7 +123,7 @@ class AlarmScreenState extends State<AlarmScreen> {
                   ),
                 ),
               ),
-            SizedBox(height: 4 * AppDimensions.heightHuge),
+            const SizedBox(height: 4 * AppDimensions.heightHuge),
           ],
         ),
       ),

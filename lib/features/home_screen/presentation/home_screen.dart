@@ -20,7 +20,8 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: AppDimensions.paddingBig),
+        padding:
+            const EdgeInsets.symmetric(horizontal: AppDimensions.paddingBig),
         child: FormBuilder(
           key: formKey,
           child: Column(
@@ -41,12 +42,12 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ]),
               ),
-              SizedBox(height: AppDimensions.heightMedium),
+              const SizedBox(height: AppDimensions.heightMedium),
               TextButton(
                 child: Text(context.localize.next),
-                onPressed: () {
+                onPressed: () async {
                   if (formKey.currentState?.saveAndValidate() ?? false) {
-                    context.router.push(const QuestionsRoute());
+                    await context.router.push(const QuestionsRoute());
                   }
                 },
               ),
@@ -55,14 +56,14 @@ class HomeScreen extends StatelessWidget {
         ),
       ),
       floatingActionButton: Padding(
-        padding: EdgeInsets.only(
+        padding: const EdgeInsets.only(
           bottom: AppDimensions.paddingMedium,
           right: AppDimensions.paddingMedium,
         ),
         child: FloatingActionButton(
-          onPressed: () => context.router.push(AlarmRoute()),
+          onPressed: () async => context.router.push(const AlarmRoute()),
           backgroundColor: AppColors.amethyst,
-          child: Icon(Icons.alarm, color: AppColors.dark),
+          child: const Icon(Icons.alarm, color: AppColors.dark),
         ),
       ),
     );

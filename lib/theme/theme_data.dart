@@ -5,12 +5,12 @@ import "package:sleep_app/theme/app_colors.dart";
 final ThemeData customTheme = ThemeData(
   brightness: Brightness.dark,
   primaryColor: AppColors.amethyst,
-  colorScheme: ColorScheme.dark(
+  colorScheme: const ColorScheme.dark(
     primary: AppColors.amethyst,
     secondary: AppColors.teal,
   ),
   scaffoldBackgroundColor: AppColors.dark,
-  textTheme: TextTheme(
+  textTheme: const TextTheme(
     headlineMedium: TextStyle(
       fontSize: AppDimensions.fontSizeBig,
       fontWeight: FontWeight.bold,
@@ -24,23 +24,23 @@ final ThemeData customTheme = ThemeData(
   inputDecorationTheme: InputDecorationTheme(
     border: OutlineInputBorder(
       borderRadius: BorderRadius.circular(AppDimensions.borderRadiusMedium),
-      borderSide: BorderSide(color: AppColors.light),
+      borderSide: const BorderSide(color: AppColors.light),
     ),
   ),
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
       backgroundColor: AppColors.amethyst,
       foregroundColor: AppColors.dark,
-      minimumSize: Size(50, 50),
+      minimumSize: const Size(50, 50),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(AppDimensions.borderRadiusMedium),
       ),
-      textStyle: TextStyle(fontSize: AppDimensions.fontSizeMedium),
+      textStyle: const TextStyle(fontSize: AppDimensions.fontSizeMedium),
     ),
   ),
   snackBarTheme: SnackBarThemeData(
     backgroundColor: AppColors.lighterDark,
-    contentTextStyle: TextStyle(color: AppColors.light, fontSize: 18),
+    contentTextStyle: const TextStyle(color: AppColors.light, fontSize: 18),
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(AppDimensions.borderRadiusMedium),
     ),
@@ -49,13 +49,13 @@ final ThemeData customTheme = ThemeData(
   ),
   textButtonTheme: TextButtonThemeData(
     style: TextButton.styleFrom(
-      padding: EdgeInsets.symmetric(
+      padding: const EdgeInsets.symmetric(
         vertical: AppDimensions.paddingSmall,
         horizontal: AppDimensions.paddingBig,
       ),
       backgroundColor: AppColors.amethyst,
       foregroundColor: AppColors.dark,
-      textStyle: TextStyle(fontSize: AppDimensions.fontSizeSmall),
+      textStyle: const TextStyle(fontSize: AppDimensions.fontSizeSmall),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(AppDimensions.borderRadiusMedium),
       ),

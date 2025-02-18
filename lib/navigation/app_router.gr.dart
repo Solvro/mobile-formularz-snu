@@ -14,7 +14,7 @@ part of 'app_router.dart';
 /// [AlarmScreen]
 class AlarmRoute extends PageRouteInfo<void> {
   const AlarmRoute({List<PageRouteInfo>? children})
-    : super(AlarmRoute.name, initialChildren: children);
+      : super(AlarmRoute.name, initialChildren: children);
 
   static const String name = 'AlarmRoute';
 
@@ -30,11 +30,11 @@ class AlarmRoute extends PageRouteInfo<void> {
 /// [HomeScreen]
 class HomeRoute extends PageRouteInfo<HomeRouteArgs> {
   HomeRoute({Key? key, List<PageRouteInfo>? children})
-    : super(
-        HomeRoute.name,
-        args: HomeRouteArgs(key: key),
-        initialChildren: children,
-      );
+      : super(
+          HomeRoute.name,
+          args: HomeRouteArgs(key: key),
+          initialChildren: children,
+        );
 
   static const String name = 'HomeRoute';
 
@@ -64,7 +64,7 @@ class HomeRouteArgs {
 /// [QuestionsScreen]
 class QuestionsRoute extends PageRouteInfo<void> {
   const QuestionsRoute({List<PageRouteInfo>? children})
-    : super(QuestionsRoute.name, initialChildren: children);
+      : super(QuestionsRoute.name, initialChildren: children);
 
   static const String name = 'QuestionsRoute';
 
@@ -80,7 +80,7 @@ class QuestionsRoute extends PageRouteInfo<void> {
 /// [ThankYouScreen]
 class ThankYouRoute extends PageRouteInfo<void> {
   const ThankYouRoute({List<PageRouteInfo>? children})
-    : super(ThankYouRoute.name, initialChildren: children);
+      : super(ThankYouRoute.name, initialChildren: children);
 
   static const String name = 'ThankYouRoute';
 

@@ -18,13 +18,13 @@ class ThankYouScreen extends StatelessWidget {
             style: context.theme.textTheme.headlineMedium,
             textAlign: TextAlign.center,
           ),
-          SizedBox(height: AppDimensions.heightBig),
+          const SizedBox(height: AppDimensions.heightBig),
           Text(
             context.localize.final_emotes,
             style: context.theme.textTheme.bodyMedium,
             textAlign: TextAlign.center,
           ),
-          SizedBox(height: AppDimensions.heightBig),
+          const SizedBox(height: AppDimensions.heightBig),
           TextButton(
             onPressed: () => context.router.popUntilRoot(),
             child: Text(context.localize.back),

@@ -17,12 +17,10 @@ class AlarmService {
     final alarmSettings = AlarmSettings(
       id: ALARM_ID,
       dateTime: alarmTime.isBefore(now)
-          ? alarmTime.add(Duration(days: 1))
+          ? alarmTime.add(const Duration(days: 1))
           : alarmTime,
       assetAudioPath: "assets/alarm.mp3",
-      volumeSettings: VolumeSettings.fixed(volume: 1.0),
-      loopAudio: true,
-      vibrate: true,
+      volumeSettings: const VolumeSettings.fixed(volume: 1),
       notificationSettings: NotificationSettings(
         title: context.localize.alarm,
         body: context.localize.it_is_time,
@@ -38,6 +36,6 @@ class AlarmService {
   }
 
   static Future<bool> isAlarmActive() async {
-    return await Alarm.isRinging();
+    return Alarm.isRinging();
   }
 }

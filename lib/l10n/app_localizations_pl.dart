@@ -24,10 +24,12 @@ class AppLocalizationsPl extends AppLocalizations {
   String get questions_headline => '😴 Prosze wypełnij ankietę 😴';
 
   @override
-  String get go_to_bed_time => 'Godzina, o której położyłeś się do łóżka wczoraj wieczorem';
+  String get go_to_bed_time =>
+      'Godzina, o której położyłeś się do łóżka wczoraj wieczorem';
 
   @override
-  String get go_sleep_time => 'Godzina, o której poszedłeś spać wczoraj wieczorem';
+  String get go_sleep_time =>
+      'Godzina, o której poszedłeś spać wczoraj wieczorem';
 
   @override
   String get fall_asleep_time => 'Jak długo zajęło Ci, żeby zasnąć?';
@@ -36,7 +38,8 @@ class AppLocalizationsPl extends AppLocalizations {
   String get awakening_times => 'Ile razy wybudzałeś się ze snu?';
 
   @override
-  String get awakening_time_total => 'Jak długo łącznie trwały te wybudzenia w łóżku?';
+  String get awakening_time_total =>
+      'Jak długo łącznie trwały te wybudzenia w łóżku?';
 
   @override
   String get wake_up_time => 'O której godzinie obudziłeś się rano?';
@@ -51,7 +54,8 @@ class AppLocalizationsPl extends AppLocalizations {
   String get required_field_error => 'Wymagane pole..';
 
   @override
-  String get thank_you => 'Dziękujemy za wypełnienie dzisiejszej ankiety! Do zobaczenia jutro!';
+  String get thank_you =>
+      'Dziękujemy za wypełnienie dzisiejszej ankiety! Do zobaczenia jutro!';
 
   @override
   String get final_emotes => '😊🎊💪🚀';
