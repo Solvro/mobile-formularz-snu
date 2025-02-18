@@ -8,7 +8,9 @@ class AlarmService {
   static const int ALARM_ID = 1;
 
   static Future<void> setDailyAlarm(
-      BuildContext context, TimeOfDay time) async {
+    BuildContext context,
+    TimeOfDay time,
+  ) async {
     final now = DateTime.now();
     final alarmTime =
         DateTime(now.year, now.month, now.day, time.hour, time.minute);

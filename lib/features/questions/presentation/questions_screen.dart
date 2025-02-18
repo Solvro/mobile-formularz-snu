@@ -25,9 +25,11 @@ class QuestionsScreen extends StatelessWidget {
           child: Column(
             children: [
               SizedBox(height: AppDimensions.heightBig),
-              Text(context.localize.questions_headline,
-                  style: context.theme.textTheme.headlineMedium
-                      ?.copyWith(fontWeight: FontWeight.normal)),
+              Text(
+                context.localize.questions_headline,
+                style: context.theme.textTheme.headlineMedium
+                    ?.copyWith(fontWeight: FontWeight.normal),
+              ),
               SizedBox(height: AppDimensions.heightBig),
               Divider(
                 color: AppColors.light,
@@ -40,7 +42,8 @@ class QuestionsScreen extends StatelessWidget {
                 initialTime: TimeOfDay(hour: 0, minute: 0),
                 validator: FormBuilderValidators.compose([
                   FormBuilderValidators.required(
-                      errorText: context.localize.required_field_error),
+                    errorText: context.localize.required_field_error,
+                  ),
                 ]),
                 decoration: InputDecoration(
                   labelText: context.localize.go_to_bed_time,
@@ -55,7 +58,8 @@ class QuestionsScreen extends StatelessWidget {
                 initialTime: TimeOfDay(hour: 0, minute: 0),
                 validator: FormBuilderValidators.compose([
                   FormBuilderValidators.required(
-                      errorText: context.localize.required_field_error),
+                    errorText: context.localize.required_field_error,
+                  ),
                 ]),
                 decoration: InputDecoration(
                   labelText: context.localize.go_sleep_time,
@@ -69,7 +73,8 @@ class QuestionsScreen extends StatelessWidget {
                 keyboardType: TextInputType.number,
                 validator: FormBuilderValidators.compose([
                   FormBuilderValidators.required(
-                      errorText: context.localize.required_field_error),
+                    errorText: context.localize.required_field_error,
+                  ),
                 ]),
                 decoration: InputDecoration(
                   labelText: context.localize.fall_asleep_time,
@@ -82,7 +87,8 @@ class QuestionsScreen extends StatelessWidget {
                 name: "awekenings_times",
                 validator: FormBuilderValidators.compose([
                   FormBuilderValidators.required(
-                      errorText: context.localize.required_field_error),
+                    errorText: context.localize.required_field_error,
+                  ),
                 ]),
                 decoration: InputDecoration(
                   labelText: context.localize.awakening_times,
@@ -96,7 +102,8 @@ class QuestionsScreen extends StatelessWidget {
                 keyboardType: TextInputType.number,
                 validator: FormBuilderValidators.compose([
                   FormBuilderValidators.required(
-                      errorText: context.localize.required_field_error),
+                    errorText: context.localize.required_field_error,
+                  ),
                 ]),
                 decoration: InputDecoration(
                   labelText: context.localize.awakening_time_total,
@@ -111,7 +118,8 @@ class QuestionsScreen extends StatelessWidget {
                 initialTime: TimeOfDay(hour: 8, minute: 0),
                 validator: FormBuilderValidators.compose([
                   FormBuilderValidators.required(
-                      errorText: context.localize.required_field_error),
+                    errorText: context.localize.required_field_error,
+                  ),
                 ]),
                 decoration: InputDecoration(
                   labelText: context.localize.wake_up_time,
@@ -126,7 +134,8 @@ class QuestionsScreen extends StatelessWidget {
                 initialTime: TimeOfDay(hour: 8, minute: 0),
                 validator: FormBuilderValidators.compose([
                   FormBuilderValidators.required(
-                      errorText: context.localize.required_field_error),
+                    errorText: context.localize.required_field_error,
+                  ),
                 ]),
                 decoration: InputDecoration(
                   labelText: context.localize.leave_bed_time,
@@ -154,7 +163,8 @@ class QuestionsScreen extends StatelessWidget {
                   maxValueWidget: (max) => SizedBox(),
                   validator: FormBuilderValidators.compose([
                     FormBuilderValidators.required(
-                        errorText: context.localize.required_field_error),
+                      errorText: context.localize.required_field_error,
+                    ),
                   ]),
                   decoration: InputDecoration(
                     labelText: context.localize.sleep_rate,
@@ -175,11 +185,13 @@ class QuestionsScreen extends StatelessWidget {
                   TextButton(
                     onPressed: () => context.router.popForced(),
                     style: context.theme.textButtonTheme.style?.copyWith(
-                      foregroundColor: WidgetStateProperty.all(AppColors.amethyst),
+                      foregroundColor:
+                          WidgetStateProperty.all(AppColors.amethyst),
                       backgroundColor:
                           WidgetStateProperty.all(Colors.transparent),
                       side: WidgetStateProperty.all(
-                          BorderSide(color: AppColors.amethyst, width: 2)),
+                        BorderSide(color: AppColors.amethyst, width: 2),
+                      ),
                     ),
                     child: Text(context.localize.cancel),
                   ),

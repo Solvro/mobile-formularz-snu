@@ -12,10 +12,14 @@ final ThemeData customTheme = ThemeData(
   scaffoldBackgroundColor: AppColors.dark,
   textTheme: TextTheme(
     headlineMedium: TextStyle(
-        fontSize: AppDimensions.fontSizeBig,
-        fontWeight: FontWeight.bold,
-        color: AppColors.light),
-    bodyMedium: TextStyle(fontSize: AppDimensions.fontSizeSmall, color: AppColors.light),
+      fontSize: AppDimensions.fontSizeBig,
+      fontWeight: FontWeight.bold,
+      color: AppColors.light,
+    ),
+    bodyMedium: TextStyle(
+      fontSize: AppDimensions.fontSizeSmall,
+      color: AppColors.light,
+    ),
   ),
   inputDecorationTheme: InputDecorationTheme(
     border: OutlineInputBorder(
@@ -46,8 +50,9 @@ final ThemeData customTheme = ThemeData(
   textButtonTheme: TextButtonThemeData(
     style: TextButton.styleFrom(
       padding: EdgeInsets.symmetric(
-          vertical: AppDimensions.paddingSmall,
-          horizontal: AppDimensions.paddingBig),
+        vertical: AppDimensions.paddingSmall,
+        horizontal: AppDimensions.paddingBig,
+      ),
       backgroundColor: AppColors.amethyst,
       foregroundColor: AppColors.dark,
       textStyle: TextStyle(fontSize: AppDimensions.fontSizeSmall),

@@ -8,6 +8,8 @@ import "package:sleep_app/theme/app_colors.dart";
 
 @RoutePage()
 class AlarmScreen extends StatefulWidget {
+  const AlarmScreen({super.key});
+
   @override
   State<StatefulWidget> createState() => AlarmScreenState();
 }
@@ -65,8 +67,9 @@ class AlarmScreenState extends State<AlarmScreen> {
       appBar: AppBar(title: Text(context.localize.alarm_settings)),
       floatingActionButton: Padding(
         padding: EdgeInsets.only(
-            bottom: AppDimensions.paddingMedium,
-            right: AppDimensions.paddingMedium),
+          bottom: AppDimensions.paddingMedium,
+          right: AppDimensions.paddingMedium,
+        ),
         child: FloatingActionButton(
           onPressed: () async {
             await saveAlarmSettings();
@@ -104,8 +107,9 @@ class AlarmScreenState extends State<AlarmScreen> {
                 onTap: () => selectTime(context),
                 child: Container(
                   padding: EdgeInsets.symmetric(
-                      vertical: AppDimensions.paddingMedium,
-                      horizontal: AppDimensions.paddingBig),
+                    vertical: AppDimensions.paddingMedium,
+                    horizontal: AppDimensions.paddingBig,
+                  ),
                   decoration: BoxDecoration(
                     borderRadius:
                         BorderRadius.circular(AppDimensions.borderRadiusMedium),
