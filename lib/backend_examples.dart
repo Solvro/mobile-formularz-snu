@@ -21,6 +21,7 @@ Future<void> exampleQueries() async {
       midNightAwaikingsCount: 6,
       outBedTime: DateTime.now(),
       totalMidNightAwaikingsTime: Duration(days: 1),
+      sleepQuality: SleepScore.four,
     ),
     "test@test.test",
   );
