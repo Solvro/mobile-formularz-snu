@@ -8,13 +8,11 @@ import "package:sleep_app/theme/app_colors.dart";
 
 @RoutePage()
 class AlarmScreen extends StatefulWidget {
-
   @override
   State<StatefulWidget> createState() => AlarmScreenState();
 }
 
 class AlarmScreenState extends State<AlarmScreen> {
-
   TimeOfDay selectedTime = TimeOfDay(hour: 8, minute: 0);
   bool isAlarmEnabled = false;
 
@@ -35,14 +33,14 @@ class AlarmScreenState extends State<AlarmScreen> {
     await prefs.setInt("alarm_minutes", selectedTime.minute);
 
     if (isAlarmEnabled) {
-      await AlarmService.setDailyAlarm(selectedTime);
+      if (!mounted) return;
+      await AlarmService.setDailyAlarm(context, selectedTime);
     } else {
       await AlarmService.stopAlarm();
     }
   }
 
   Future<void> selectTime(BuildContext context) async {
-
     final TimeOfDay? picked = await showTimePicker(
       context: context,
       initialTime: selectedTime,
@@ -66,7 +64,9 @@ class AlarmScreenState extends State<AlarmScreen> {
     return Scaffold(
       appBar: AppBar(title: Text(context.localize.alarm_settings)),
       floatingActionButton: Padding(
-        padding: EdgeInsets.only(bottom: AppDimensions.paddingMedium, right: AppDimensions.paddingMedium),
+        padding: EdgeInsets.only(
+            bottom: AppDimensions.paddingMedium,
+            right: AppDimensions.paddingMedium),
         child: FloatingActionButton(
           onPressed: () async {
             await saveAlarmSettings();
@@ -75,9 +75,9 @@ class AlarmScreenState extends State<AlarmScreen> {
               SnackBar(content: Text(context.localize.alarm_settings_saved)),
             );
             context.router.popForced();
-          }, 
-          backgroundColor: amethyst,
-          child: Icon(Icons.done, color: dark),
+          },
+          backgroundColor: AppColors.amethyst,
+          child: Icon(Icons.done, color: AppColors.dark),
         ),
       ),
       body: Padding(
@@ -90,7 +90,7 @@ class AlarmScreenState extends State<AlarmScreen> {
               children: [
                 Text(
                   context.localize.enable_alarm,
-                  style: TextStyle(fontSize: 18),
+                  style: TextStyle(fontSize: AppDimensions.fontSizeSmall),
                 ),
                 Switch(
                   value: isAlarmEnabled,
@@ -98,15 +98,18 @@ class AlarmScreenState extends State<AlarmScreen> {
                 ),
               ],
             ),
-            if(isAlarmEnabled) SizedBox(height: AppDimensions.heightSmall),
-            if(isAlarmEnabled) 
+            if (isAlarmEnabled) SizedBox(height: AppDimensions.heightSmall),
+            if (isAlarmEnabled)
               GestureDetector(
                 onTap: () => selectTime(context),
                 child: Container(
-                  padding: EdgeInsets.symmetric(vertical: 12, horizontal: 20),
+                  padding: EdgeInsets.symmetric(
+                      vertical: AppDimensions.paddingMedium,
+                      horizontal: AppDimensions.paddingBig),
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    border: Border.all(color: amethyst, width: 2),
+                    borderRadius:
+                        BorderRadius.circular(AppDimensions.borderRadiusMedium),
+                    border: Border.all(color: AppColors.amethyst, width: 2),
                   ),
                   child: Text(
                     context.localize.alarm_time(selectedTime.format(context)),
@@ -114,10 +117,7 @@ class AlarmScreenState extends State<AlarmScreen> {
                   ),
                 ),
               ),
-            SizedBox(height: AppDimensions.heightHuge),
-            SizedBox(height: AppDimensions.heightHuge),
-            SizedBox(height: AppDimensions.heightHuge),
-            SizedBox(height: AppDimensions.heightHuge),
+            SizedBox(height: 4 * AppDimensions.heightHuge),
           ],
         ),
       ),

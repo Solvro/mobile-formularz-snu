@@ -17,6 +17,8 @@
     "leave_bed_time" : "What time did you get out of bed?",
     "sleep_rate" : "How would you rate your sleep quality? (0-5)",
 
+    "required_field_error" : "This field is required...",
+
     "thank_you" : "Thank you for filling in the survey! See You tomorrow!",
     "final_emotes" : "😊🎊💪🚀",
 
@@ -26,11 +28,16 @@
     "@alarm_time": {
         "description": "Shows daily alarm time",
         "placeholders": {
-            "time": {}
+            "time": {
+                "type": "String"
+            }
         }
     },
     "save_alarm": "Save alarm",
     "alarm_settings_saved" : "Alarm settings saved!",
+    "alarm" : "Alarm",
+    "it_is_time": "It's time to fill in the survey!",
+    "stop": "Stop",
 
     "next" : "Next",
     "submit" : "Submit",

@@ -1,8 +1,11 @@
 import "package:flutter/material.dart";
-import "package:flutter_gen/gen_l10n/app_localizations.dart";
+import "package:sleep_app/l10n/app_localizations.dart";
+import "package:sleep_app/l10n/app_localizations_pl.dart";
 
-extension LocalizationExtension on BuildContext {
-  AppLocalizations get localize => AppLocalizations.of(this)!;
+extension BuildContextX on BuildContext {
+  AppLocalizations get localize {
+    return AppLocalizations.of(this) ?? AppLocalizationsPl();
+  }
 }
 
 extension ThemeExtension on BuildContext {

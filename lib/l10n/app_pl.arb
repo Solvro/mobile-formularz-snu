@@ -17,6 +17,8 @@
     "leave_bed_time" : "O której godzinie wstałeś z łóżka?",
     "sleep_rate" : "Jak oceniasz jakość swojego snu? (0-5)",
 
+    "required_field_error" : "Wymagane pole..",
+
     "thank_you" : "Dziękujemy za wypełnienie dzisiejszej ankiety! Do zobaczenia jutro!",
     "final_emotes" : "😊🎊💪🚀",
 
@@ -26,11 +28,16 @@
     "@alarm_time": {
         "description": "Shows daily alarm time",
         "placeholders": {
-            "time": {}
+            "time": {
+                "type": "String"
+            }
         }
     },
     "save_alarm": "Zapisz budzik",
     "alarm_settings_saved" : "Ustawienia budzika zapisane!",
+    "alarm" : "Alarm",
+    "it_is_time": "Już czas wypełnić ankietę!",
+    "stop": "Stop",
 
     "next" : "Dalej",
     "submit" : "Prześlij",
