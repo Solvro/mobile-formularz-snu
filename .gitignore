@@ -33,6 +33,13 @@ migrate_working_dir/
 .pub/
 /build/
 
+lib/navigation/app_router.gr.dart
+**/*.gr.dart
+
+lib/generated/
+l10n/
+*.arb
+
 # Symbolication related
 app.*.symbols
 
