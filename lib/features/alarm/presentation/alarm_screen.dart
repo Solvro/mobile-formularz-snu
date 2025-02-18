@@ -1,9 +1,11 @@
 import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
-import "package:shared_preferences/shared_preferences.dart";
 import "package:sleep_app/constants/app_dimensions.dart";
 import "package:sleep_app/extensions/context_extensions.dart";
 import "package:sleep_app/features/alarm/business/alarm_service.dart";
+import "package:sleep_app/features/alarm/data/alarm_cache_repository.dart";
+import "package:sleep_app/features/alarm/data/alarm_settings.dart"
+    show AlarmSettings;
 import "package:sleep_app/theme/app_colors.dart";
 
 @RoutePage()
@@ -15,24 +17,23 @@ class AlarmScreen extends StatefulWidget {
 }
 
 class AlarmScreenState extends State<AlarmScreen> {
+  final alarmCacheRepository = AlarmCacheRepository();
   TimeOfDay selectedTime = const TimeOfDay(hour: 8, minute: 0);
   bool isAlarmEnabled = false;
 
   Future<void> loadAlarmSettings() async {
-    final prefs = await SharedPreferences.getInstance();
+    final alarmSettings = await alarmCacheRepository.loadAlarmSettings();
+
     setState(() {
-      isAlarmEnabled = prefs.getBool("is_alarm_enabled") ?? false;
-      final int hour = prefs.getInt("alarm_hour") ?? 8;
-      final int minute = prefs.getInt("alarm_minutes") ?? 0;
-      selectedTime = TimeOfDay(hour: hour, minute: minute);
+      isAlarmEnabled = alarmSettings.isEnabled;
+      selectedTime = alarmSettings.time;
     });
   }
 
   Future<void> saveAlarmSettings() async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setBool("is_alarm_enabled", isAlarmEnabled);
-    await prefs.setInt("alarm_hour", selectedTime.hour);
-    await prefs.setInt("alarm_minutes", selectedTime.minute);
+    final alarmSettings =
+        AlarmSettings(isEnabled: isAlarmEnabled, time: selectedTime);
+    await alarmCacheRepository.saveAlarmSettings(alarmSettings);
 
     if (isAlarmEnabled) {
       if (!mounted) return;
@@ -56,9 +57,9 @@ class AlarmScreenState extends State<AlarmScreen> {
   }
 
   @override
-  Future<void> initState() async {
+  void initState() {
     super.initState();
-    await loadAlarmSettings();
+    Future.microtask(() async => loadAlarmSettings());
   }
 
   @override
