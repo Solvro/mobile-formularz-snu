@@ -4,6 +4,7 @@ import "package:flutter_localizations/flutter_localizations.dart";
 import "package:flutter_native_splash/flutter_native_splash.dart";
 import "package:sleep_app/l10n/app_localizations.dart";
 import "package:sleep_app/navigation/app_router.dart";
+import "package:sleep_app/services/dependency_injection.dart";
 import "package:sleep_app/theme/theme_data.dart";
 
 Future<void> main() async {
@@ -11,23 +12,22 @@ Future<void> main() async {
     widgetsBinding: WidgetsFlutterBinding.ensureInitialized(),
   );
 
+  setupDependencyInjection();
   await Alarm.init();
-  final appRouter = AppRouter();
+  //final appRouter = AppRouter();
 
   FlutterNativeSplash.remove();
 
-  runApp(MyApp(router: appRouter));
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key, required this.router});
-
-  final AppRouter router;
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      routerConfig: router.config(),
+      routerConfig: getIt<AppRouter>().config(),
       localizationsDelegates: const [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
