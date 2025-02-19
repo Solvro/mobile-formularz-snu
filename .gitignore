@@ -40,6 +40,8 @@ lib/generated/
 l10n/
 *.arb
 
+lib/gen/
+
 # Symbolication related
 app.*.symbols
 

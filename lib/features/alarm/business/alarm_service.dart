@@ -2,6 +2,7 @@ import "package:alarm/alarm.dart";
 import "package:alarm/model/volume_settings.dart";
 import "package:flutter/material.dart";
 import "package:sleep_app/extensions/context_extensions.dart";
+import "package:sleep_app/gen/assets.gen.dart";
 
 class AlarmService {
   // ignore: constant_identifier_names
@@ -19,7 +20,7 @@ class AlarmService {
       dateTime: alarmTime.isBefore(now)
           ? alarmTime.add(const Duration(days: 1))
           : alarmTime,
-      assetAudioPath: "assets/alarm.mp3",
+      assetAudioPath: Assets.alarm,
       volumeSettings: const VolumeSettings.fixed(volume: 1),
       notificationSettings: NotificationSettings(
         title: context.localize.alarm,
