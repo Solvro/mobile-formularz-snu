@@ -49,7 +49,7 @@ class AlarmScreen extends HookWidget {
   Future<void> selectTime(BuildContext context) async {
     final TimeOfDay? picked = await showTimePicker( 
       context: context,
-      initialTime: selectedTime,
+      initialTime: selectedTime.value,
     );
 
       if (picked != null && picked != selectedTime.value) {
