@@ -33,10 +33,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get fall_asleep_time => 'How long did it take you to fall asleep?';
 
   @override
-  String get awakening_times => 'How many times did you wake up during the night?';
+  String get awakening_times =>
+      'How many times did you wake up during the night?';
 
   @override
-  String get awakening_time_total => 'How long did these awakenings last in total?';
+  String get awakening_time_total =>
+      'How long did these awakenings last in total?';
 
   @override
   String get wake_up_time => 'What time did you wake up in the morning?';
@@ -51,7 +53,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get required_field_error => 'This field is required...';
 
   @override
-  String get thank_you => 'Thank you for filling in the survey! See You tomorrow!';
+  String get thank_you =>
+      'Thank you for filling in the survey! See You tomorrow!';
 
   @override
   String get final_emotes => '😊🎊💪🚀';
