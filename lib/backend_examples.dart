@@ -20,7 +20,7 @@ Future<void> exampleQueries() async {
       wakeUpTime: DateTime.now(),
       midNightAwaikingsCount: 6,
       outBedTime: DateTime.now(),
-      totalMidNightAwaikingsTime: Duration(days: 1),
+      totalMidNightAwaikingsTime: const Duration(days: 1),
       sleepQuality: SleepScore.four,
     ),
     "test@test.test",
