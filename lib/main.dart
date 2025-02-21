@@ -14,11 +14,10 @@ Future<void> main() async {
 
   setupDependencyInjection();
   await Alarm.init();
-  //final appRouter = AppRouter();
 
   FlutterNativeSplash.remove();
 
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {

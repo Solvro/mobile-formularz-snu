@@ -19,6 +19,7 @@ dependencies:
   flutter_native_splash: ^2.4.5
   get_it: ^8.0.3
   flutter_gen: ^5.9.0
+  flutter_hooks: ^0.20.5
   flutter_localizations:
     sdk: flutter
   intl: any
