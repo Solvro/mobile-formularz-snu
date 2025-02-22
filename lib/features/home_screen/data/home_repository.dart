@@ -16,5 +16,9 @@ class HomeRepository {
       email,
     );
   }
+
+  Future<bool> isStudyInProgress() async {
+    return client.config.isStudyInProgress();
+  }
   
 }

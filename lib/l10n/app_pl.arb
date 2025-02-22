@@ -3,6 +3,7 @@
     "app_title" : "Apka do snu",
     "email_text_field_hint" : "Podaj swojego maila...",
     "email_error" : "Musisz podać prawidłowy email...",
+    "study_not_in_progress" : "Badanie nie jest aktualnie przeprowadzane...",
     "not_enrolled" : "Podany email nie jest zapisany do ankiety...",
     "alread_sent_today" : "Ankieta została już dzisiaj wypełniona za pośrednictwem tego maila...",
 

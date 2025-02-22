@@ -25,12 +25,19 @@ class HomeScreen extends StatelessWidget {
       if (formKey.currentState?.saveAndValidate() ?? false) {
         final String email = formKey.currentState?.value["email"] ?? "";
 
-        final bool enrolled = await homeRepository.doesEmailExist(email);
-        final bool hasAlreadySentToday = await homeRepository.hasTodayAlreadySentResponse(email);
+        final studyInProgress = await homeRepository.isStudyInProgress();
+        final enrolled = await homeRepository.doesEmailExist(email);
+        final hasAlreadySentToday = await homeRepository.hasTodayAlreadySentResponse(email);
 
         if (!context.mounted) return;
 
-        if(!enrolled) {
+        // in realease negation of condition
+        if(studyInProgress) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(context.localize.study_not_in_progress)),
+          );
+        }
+        else if(!enrolled) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(content: Text(context.localize.not_enrolled)),
           );
