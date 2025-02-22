@@ -10,4 +10,11 @@ class HomeRepository {
       email,
     );
   }
+
+  Future<bool> hasTodayAlreadySentResponse(String email) async {
+    return client.formEntry.hasTodayAlreadySentResponse(
+      email,
+    );
+  }
+  
 }

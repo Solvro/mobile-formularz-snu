@@ -3,7 +3,8 @@
     "app_title" : "Sleep Control App",
     "email_text_field_hint" : "Enter your email...",
     "email_error" : "You have to pass a valid email...",
-    "bad_email_snackbar" : "Passed email is not enrolled in the survey...",
+    "not_enrolled" : "Passed email is not enrolled in the survey...",
+    "alread_sent_today" : "The survey has been already filled using this email...",
 
     "questions" : "Questions",
 

@@ -21,24 +21,29 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    void tryStartSurvey() async {
+    Future<void> tryStartSurvey() async {
       if (formKey.currentState?.saveAndValidate() ?? false) {
         final String email = formKey.currentState?.value["email"] ?? "";
 
-        final bool exists = await homeRepository.doesEmailExist(email);
+        final bool enrolled = await homeRepository.doesEmailExist(email);
+        final bool hasAlreadySentToday = await homeRepository.hasTodayAlreadySentResponse(email);
 
         if (!context.mounted) return;
 
-        if(exists) {
-          await context.router.push(const QuestionsRoute());
-        }
-        else {
+        if(!enrolled) {
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(context.localize.bad_email_snackbar)),
+            SnackBar(content: Text(context.localize.not_enrolled)),
           );
         }
+        else if (hasAlreadySentToday) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(context.localize.alread_sent_today)),
+          );
+        }
+        else {
+          await context.router.push(const QuestionsRoute());
+        }
       }
-      
     }
 
     return Scaffold(

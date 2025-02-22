@@ -3,7 +3,8 @@
     "app_title" : "Apka do snu",
     "email_text_field_hint" : "Podaj swojego maila...",
     "email_error" : "Musisz podać prawidłowy email...",
-    "bad_email_snackbar" : "Podany email nie jest zapisany do ankiety...",
+    "not_enrolled" : "Podany email nie jest zapisany do ankiety...",
+    "alread_sent_today" : "Ankieta została już dzisiaj wypełniona za pośrednictwem tego maila...",
 
     "questions" : "Pytania",
 
