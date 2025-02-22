@@ -4,6 +4,7 @@ import "package:flutter_form_builder/flutter_form_builder.dart";
 import "package:form_builder_validators/form_builder_validators.dart";
 import "package:sleep_app/constants/app_dimensions.dart";
 import "package:sleep_app/extensions/context_extensions.dart";
+import "package:sleep_app/features/home_screen/data/home_repository.dart";
 import "package:sleep_app/navigation/app_router.dart";
 import "package:sleep_app/theme/app_colors.dart";
 
@@ -15,9 +16,31 @@ class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
 
   final GlobalKey<FormBuilderState> formKey = GlobalKey<FormBuilderState>();
+  final homeRepository = HomeRepository();
 
   @override
   Widget build(BuildContext context) {
+
+    void tryStartSurvey() async {
+      if (formKey.currentState?.saveAndValidate() ?? false) {
+        final String email = formKey.currentState?.value["email"] ?? "";
+
+        final bool exists = await homeRepository.doesEmailExist(email);
+
+        if (!context.mounted) return;
+
+        if(exists) {
+          await context.router.push(const QuestionsRoute());
+        }
+        else {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(context.localize.bad_email_snackbar)),
+          );
+        }
+      }
+      
+    }
+
     return Scaffold(
       body: Padding(
         padding:
@@ -44,12 +67,8 @@ class HomeScreen extends StatelessWidget {
               ),
               const SizedBox(height: AppDimensions.heightMedium),
               TextButton(
+                onPressed: tryStartSurvey,
                 child: Text(context.localize.next),
-                onPressed: () async {
-                  if (formKey.currentState?.saveAndValidate() ?? false) {
-                    await context.router.push(const QuestionsRoute());
-                  }
-                },
               ),
             ],
           ),
