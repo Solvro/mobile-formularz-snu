@@ -1,18 +1,16 @@
 import "package:formularz_snu_client/formularz_snu_client.dart";
-import "package:sleep_app/features/api_base/client_provider.dart";
+import "package:sleep_app/dependency_injection.dart";
 
 class FormRepository {
-  final Client client = ClientProvider().client;
-
   Future<bool> doesEmailExist(String email) async {
-    return client.participant.doesThisEmailExist(email);
+    return getIt<Client>().participant.doesThisEmailExist(email);
   }
 
   Future<bool> hasTodayAlreadySentResponse(String email) async {
-    return client.formEntry.hasTodayAlreadySentResponse(email);
+    return getIt<Client>().formEntry.hasTodayAlreadySentResponse(email);
   }
 
   Future<bool> isStudyInProgress() async {
-    return client.config.isStudyInProgress();
+    return getIt<Client>().config.isStudyInProgress();
   }
 }
