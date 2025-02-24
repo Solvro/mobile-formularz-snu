@@ -2,12 +2,12 @@ import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
 import "package:flutter_form_builder/flutter_form_builder.dart";
 import "package:form_builder_validators/form_builder_validators.dart";
-import "package:sleep_app/constants/app_dimensions.dart";
-import "package:sleep_app/extensions/context_extensions.dart";
-import "package:sleep_app/features/email/data/email_remote_repository.dart";
-import "package:sleep_app/features/study_in_progress/data/study_in_progress_repo.dart";
-import "package:sleep_app/navigation/app_router.dart";
-import "package:sleep_app/theme/app_colors.dart";
+
+import "../../../constants/app_dimensions.dart";
+import "../../../extensions/context_extensions.dart";
+import "../../../navigation/app_router.dart";
+import "../../../theme/app_colors.dart";
+import "../business/email_service.dart";
 
 const emailRegexPattern =
     r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+";
@@ -20,33 +20,20 @@ class EmailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Future<void> tryStartSurvey() async {
+    Future<void> onSubmitEmail() async {
       if (_formKey.currentState?.saveAndValidate() ?? false) {
         final String email = _formKey.currentState?.value["email"] ?? "";
 
-        final studyInProgress = await StudyInProgressRepo.isStudyInProgress();
-        final enrolled = await EmailRemoteRepository.doesEmailExist(email);
+        final success = await EmailService.tryToEnroll(email);
 
         if (!context.mounted) return;
 
-        if (!studyInProgress) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(context.localize.study_not_in_progress)),
-          );
-        } else if (!enrolled) {
+        if (!success) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(content: Text(context.localize.not_enrolled)),
           );
         } else {
-          final hasAlreadySentToday =
-              await EmailRemoteRepository.hasTodayAlreadySentResponse(email);
-          if (hasAlreadySentToday && context.mounted) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text(context.localize.alread_sent_today)),
-            );
-          } else if (context.mounted) {
-            await context.router.push(const QuestionsRoute());
-          }
+          await context.router.replaceAll([const QuestionsRoute()]);
         }
       }
     }
@@ -91,7 +78,7 @@ class EmailScreen extends StatelessWidget {
               ),
               const SizedBox(height: AppDimensions.heightMedium),
               TextButton(
-                onPressed: tryStartSurvey,
+                onPressed: onSubmitEmail,
                 child: Text(context.localize.next),
               ),
             ],

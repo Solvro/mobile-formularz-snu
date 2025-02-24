@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
-import "package:sleep_app/extensions/context_extensions.dart";
-import "package:sleep_app/features/study_in_progress/data/study_in_progress_repo.dart";
+
+import "../../../extensions/context_extensions.dart";
+import "../data/study_in_progress_repo.dart";
 
 class StudyInPogrogressSection extends StatelessWidget {
   const StudyInPogrogressSection({super.key, required this.onPressed});
@@ -13,9 +14,9 @@ class StudyInPogrogressSection extends StatelessWidget {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const CircularProgressIndicator();
         } else if (snapshot.hasError) {
-          return const Text(
+          return Text(
             "Wystąpił błąd",
-            style: TextStyle(color: Colors.red),
+            style: TextStyle(color: context.theme.colorScheme.error),
           );
         } else {
           final bool studyInProgress = snapshot.data ?? false;
