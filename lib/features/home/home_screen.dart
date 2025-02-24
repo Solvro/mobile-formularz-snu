@@ -8,7 +8,7 @@ import "../../constants/app_dimensions.dart";
 import "../../extensions/context_extensions.dart";
 import "../../gen/assets.gen.dart";
 import "../../navigation/app_router.dart";
-import "../email/business/email_service.dart";
+import "../email/data/email_local_repository.dart";
 import "../study_in_progress/presentation/study_in_pogrogress_section.dart";
 
 @RoutePage()
@@ -18,7 +18,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: Future.microtask(EmailService.getEnrolledEmail),
+      future: Future.microtask(EmailLocalRepository.getEnrolledEmail),
       builder: (context, snapshot) {
         return Scaffold(
           body: Padding(
