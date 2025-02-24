@@ -53,7 +53,7 @@ final ThemeData customTheme = ThemeData(
         vertical: AppDimensions.paddingSmall,
         horizontal: AppDimensions.paddingBig,
       ),
-      backgroundColor: const Color.fromARGB(255, 132, 54, 221),
+      backgroundColor: const Color.fromARGB(255, 120, 33, 219),
       foregroundColor: AppColors.light,
       textStyle: const TextStyle(fontSize: AppDimensions.fontSizeSmall),
       shape: RoundedRectangleBorder(

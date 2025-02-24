@@ -7,6 +7,7 @@ import "package:sleep_app/extensions/context_extensions.dart";
 import "package:sleep_app/features/email/data/email_remote_repository.dart";
 import "package:sleep_app/features/study_in_progress/data/study_in_progress_repo.dart";
 import "package:sleep_app/navigation/app_router.dart";
+import "package:sleep_app/theme/app_colors.dart";
 
 const emailRegexPattern =
     r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+";
@@ -25,13 +26,10 @@ class EmailScreen extends StatelessWidget {
 
         final studyInProgress = await StudyInProgressRepo.isStudyInProgress();
         final enrolled = await EmailRemoteRepository.doesEmailExist(email);
-        final hasAlreadySentToday =
-            await EmailRemoteRepository.hasTodayAlreadySentResponse(email);
 
         if (!context.mounted) return;
 
-        // in realease negation of condition
-        if (studyInProgress) {
+        if (!studyInProgress) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(content: Text(context.localize.study_not_in_progress)),
           );
@@ -39,17 +37,23 @@ class EmailScreen extends StatelessWidget {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(content: Text(context.localize.not_enrolled)),
           );
-        } else if (hasAlreadySentToday) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(context.localize.alread_sent_today)),
-          );
         } else {
-          await context.router.push(const QuestionsRoute());
+          final hasAlreadySentToday =
+              await EmailRemoteRepository.hasTodayAlreadySentResponse(email);
+          if (hasAlreadySentToday && context.mounted) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text(context.localize.alread_sent_today)),
+            );
+          } else if (context.mounted) {
+            await context.router.push(const QuestionsRoute());
+          }
         }
       }
     }
 
     return Scaffold(
+      appBar: AppBar(title: const Text("Zapisz się")),
+      extendBodyBehindAppBar: true,
       body: Padding(
         padding:
             const EdgeInsets.symmetric(horizontal: AppDimensions.paddingBig),
@@ -58,10 +62,22 @@ class EmailScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              Padding(
+                padding: const EdgeInsets.all(AppDimensions.heightSmall / 3),
+                child: Text(
+                  "Wprowadź swój adres email, który podałeś w pierwszym etapie badania, aby kontynuować 📧",
+                  style: context.theme.textTheme.headlineMedium,
+                  textAlign: TextAlign.left,
+                ),
+              ),
+              const SizedBox(height: AppDimensions.heightBig),
               FormBuilderTextField(
                 name: "email",
                 decoration: InputDecoration(
                   helperText: context.localize.email_text_field_hint,
+                  labelText: "Adres email",
+                  hintText: "twoj_mail@gmail.com",
+                  hintStyle: const TextStyle(color: AppColors.lightGray),
                 ),
                 validator: FormBuilderValidators.compose([
                   FormBuilderValidators.required(

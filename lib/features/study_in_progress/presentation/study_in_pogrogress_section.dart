@@ -13,7 +13,10 @@ class StudyInPogrogressSection extends StatelessWidget {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const CircularProgressIndicator();
         } else if (snapshot.hasError) {
-          return const Text("Wystąpił błąd");
+          return const Text(
+            "Wystąpił błąd",
+            style: TextStyle(color: Colors.red),
+          );
         } else {
           final bool studyInProgress = snapshot.data ?? false;
           return studyInProgress
