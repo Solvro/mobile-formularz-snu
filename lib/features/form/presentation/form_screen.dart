@@ -4,50 +4,47 @@ import "package:flutter_form_builder/flutter_form_builder.dart";
 import "package:form_builder_validators/form_builder_validators.dart";
 import "package:sleep_app/constants/app_dimensions.dart";
 import "package:sleep_app/extensions/context_extensions.dart";
-import "package:sleep_app/features/home_screen/data/home_repository.dart";
+import "package:sleep_app/features/form/data/form_repository.dart";
 import "package:sleep_app/navigation/app_router.dart";
 import "package:sleep_app/theme/app_colors.dart";
 
-const String emailRegexPattern =
+const emailRegexPattern =
     r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+";
 
 @RoutePage()
-class HomeScreen extends StatelessWidget {
-  HomeScreen({super.key});
+class FormScreen extends StatelessWidget {
+  FormScreen({super.key});
 
   final GlobalKey<FormBuilderState> formKey = GlobalKey<FormBuilderState>();
-  final homeRepository = HomeRepository();
+  final homeRepository = FormRepository();
 
   @override
   Widget build(BuildContext context) {
-
     Future<void> tryStartSurvey() async {
       if (formKey.currentState?.saveAndValidate() ?? false) {
         final String email = formKey.currentState?.value["email"] ?? "";
 
         final studyInProgress = await homeRepository.isStudyInProgress();
         final enrolled = await homeRepository.doesEmailExist(email);
-        final hasAlreadySentToday = await homeRepository.hasTodayAlreadySentResponse(email);
+        final hasAlreadySentToday =
+            await homeRepository.hasTodayAlreadySentResponse(email);
 
         if (!context.mounted) return;
 
         // in realease negation of condition
-        if(studyInProgress) {
+        if (studyInProgress) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(content: Text(context.localize.study_not_in_progress)),
           );
-        }
-        else if(!enrolled) {
+        } else if (!enrolled) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(content: Text(context.localize.not_enrolled)),
           );
-        }
-        else if (hasAlreadySentToday) {
+        } else if (hasAlreadySentToday) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(content: Text(context.localize.alread_sent_today)),
           );
-        }
-        else {
+        } else {
           await context.router.push(const QuestionsRoute());
         }
       }
