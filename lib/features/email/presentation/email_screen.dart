@@ -4,9 +4,9 @@ import "package:flutter_form_builder/flutter_form_builder.dart";
 import "package:form_builder_validators/form_builder_validators.dart";
 import "package:sleep_app/constants/app_dimensions.dart";
 import "package:sleep_app/extensions/context_extensions.dart";
-import "package:sleep_app/features/form/data/form_repository.dart";
+import "package:sleep_app/features/email/data/email_remote_repository.dart";
+import "package:sleep_app/features/study_in_progress/data/study_in_progress_repo.dart";
 import "package:sleep_app/navigation/app_router.dart";
-import "package:sleep_app/theme/app_colors.dart";
 
 const emailRegexPattern =
     r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+";
@@ -15,19 +15,18 @@ const emailRegexPattern =
 class FormScreen extends StatelessWidget {
   FormScreen({super.key});
 
-  final GlobalKey<FormBuilderState> formKey = GlobalKey<FormBuilderState>();
-  final homeRepository = FormRepository();
+  final _formKey = GlobalKey<FormBuilderState>();
 
   @override
   Widget build(BuildContext context) {
     Future<void> tryStartSurvey() async {
-      if (formKey.currentState?.saveAndValidate() ?? false) {
-        final String email = formKey.currentState?.value["email"] ?? "";
+      if (_formKey.currentState?.saveAndValidate() ?? false) {
+        final String email = _formKey.currentState?.value["email"] ?? "";
 
-        final studyInProgress = await homeRepository.isStudyInProgress();
-        final enrolled = await homeRepository.doesEmailExist(email);
+        final studyInProgress = await StudyInProgressRepo.isStudyInProgress();
+        final enrolled = await EmailRemoteRepository.doesEmailExist(email);
         final hasAlreadySentToday =
-            await homeRepository.hasTodayAlreadySentResponse(email);
+            await EmailRemoteRepository.hasTodayAlreadySentResponse(email);
 
         if (!context.mounted) return;
 
@@ -55,7 +54,7 @@ class FormScreen extends StatelessWidget {
         padding:
             const EdgeInsets.symmetric(horizontal: AppDimensions.paddingBig),
         child: FormBuilder(
-          key: formKey,
+          key: _formKey,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -81,17 +80,6 @@ class FormScreen extends StatelessWidget {
               ),
             ],
           ),
-        ),
-      ),
-      floatingActionButton: Padding(
-        padding: const EdgeInsets.only(
-          bottom: AppDimensions.paddingMedium,
-          right: AppDimensions.paddingMedium,
-        ),
-        child: FloatingActionButton(
-          onPressed: () async => context.router.push(const AlarmRoute()),
-          backgroundColor: AppColors.amethyst,
-          child: const Icon(Icons.alarm, color: AppColors.dark),
         ),
       ),
     );

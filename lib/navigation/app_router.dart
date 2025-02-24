@@ -1,7 +1,7 @@
 import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
 import "package:sleep_app/features/alarm/presentation/alarm_screen.dart";
-import "package:sleep_app/features/form/presentation/form_screen.dart";
+import "package:sleep_app/features/email/presentation/email_screen.dart";
 import "package:sleep_app/features/questions/presentation/questions_screen.dart";
 import "package:sleep_app/features/thank_you/presentation/thank_you_screen.dart";
 
