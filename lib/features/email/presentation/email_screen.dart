@@ -12,8 +12,8 @@ const emailRegexPattern =
     r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+";
 
 @RoutePage()
-class FormScreen extends StatelessWidget {
-  FormScreen({super.key});
+class EmailScreen extends StatelessWidget {
+  EmailScreen({super.key});
 
   final _formKey = GlobalKey<FormBuilderState>();
 

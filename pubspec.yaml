@@ -53,6 +53,7 @@ flutter:
 
   assets:
     - assets/alarm.mp3
+    - assets/icon.png
 
 flutter_native_splash:
   color: "#131415"

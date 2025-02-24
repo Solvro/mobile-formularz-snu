@@ -53,8 +53,8 @@ final ThemeData customTheme = ThemeData(
         vertical: AppDimensions.paddingSmall,
         horizontal: AppDimensions.paddingBig,
       ),
-      backgroundColor: AppColors.amethyst,
-      foregroundColor: AppColors.dark,
+      backgroundColor: const Color.fromARGB(255, 132, 54, 221),
+      foregroundColor: AppColors.light,
       textStyle: const TextStyle(fontSize: AppDimensions.fontSizeSmall),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(AppDimensions.borderRadiusMedium),
