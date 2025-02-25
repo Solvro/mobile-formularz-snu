@@ -6,8 +6,9 @@ import "package:flutter_hooks/flutter_hooks.dart";
 
 import "../../constants/app_dimensions.dart";
 import "../../extensions/context_extensions.dart";
-import "../../gen/assets.gen.dart";
 import "../../navigation/app_router.dart";
+import "../../widgets/footer.dart";
+import "../../widgets/logo.dart";
 import "../email/data/email_local_repository.dart";
 import "../study_in_progress/presentation/study_in_pogrogress_section.dart";
 
@@ -28,27 +29,11 @@ class HomeScreen extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image.asset(
-                  Assets.icon.path,
-                  width: 150,
-                  height: 150,
-                ),
-                const SizedBox(height: AppDimensions.heightMedium),
-                Text(
-                  "Badanie snu",
-                  style: context.theme.textTheme.headlineMedium,
-                ),
-                const SizedBox(height: AppDimensions.heightBig),
+                const Logo(),
                 EnrolledEmailConsumer(
                   snapshot: snapshot,
                 ),
-                const SizedBox(height: AppDimensions.heightBig),
-                Text(
-                  "Aplikacja stworzona przez Koło Naukowe Solvro",
-                  style: context.theme.textTheme.bodySmall?.copyWith(
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+                const Footer(),
               ],
             ),
           ),
@@ -104,7 +89,7 @@ class RedirectWidget extends HookWidget {
       () {
         Future.microtask(() async {
           if (!context.mounted) return;
-          await context.router.replaceAll([const QuestionsRoute()]);
+          await context.router.replaceAll([const FirstFormRoute()]);
         });
         return null;
       },

@@ -1,10 +1,12 @@
 import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
-import "package:sleep_app/features/alarm/presentation/alarm_screen.dart";
-import "package:sleep_app/features/email/presentation/email_screen.dart";
-import "package:sleep_app/features/home/home_screen.dart";
-import "package:sleep_app/features/questions/presentation/questions_screen.dart";
-import "package:sleep_app/features/thank_you/presentation/thank_you_screen.dart";
+
+import "../features/alarm/presentation/alarm_screen.dart";
+import "../features/email/presentation/email_screen.dart";
+import "../features/form/presentation/first_form_screen.dart";
+import "../features/home/home_screen.dart";
+import "../features/questions/presentation/questions_screen.dart";
+import "../features/thank_you/presentation/thank_you_screen.dart";
 
 part "app_router.gr.dart";
 
@@ -17,5 +19,6 @@ class AppRouter extends RootStackRouter {
         AutoRoute(page: QuestionsRoute.page),
         AutoRoute(page: ThankYouRoute.page),
         AutoRoute(page: AlarmRoute.page),
+        AutoRoute(page: FirstFormRoute.page),
       ];
 }

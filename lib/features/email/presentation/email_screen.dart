@@ -33,7 +33,7 @@ class EmailScreen extends StatelessWidget {
             SnackBar(content: Text(context.localize.not_enrolled)),
           );
         } else {
-          await context.router.replaceAll([const QuestionsRoute()]);
+          await context.router.replaceAll([const FirstFormRoute()]);
         }
       }
     }
