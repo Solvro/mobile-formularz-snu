@@ -2,8 +2,10 @@ import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
 import "package:flutter_form_builder/flutter_form_builder.dart";
 import "package:form_builder_validators/form_builder_validators.dart";
+import "package:formularz_snu_client/formularz_snu_client.dart";
 import "package:sleep_app/constants/app_dimensions.dart";
 import "package:sleep_app/extensions/context_extensions.dart";
+import "package:sleep_app/features/questions/business/questions_service.dart";
 import "package:sleep_app/navigation/app_router.dart";
 import "package:sleep_app/theme/app_colors.dart";
 
@@ -64,21 +66,6 @@ class QuestionsScreen extends StatelessWidget {
                 ]),
                 decoration: InputDecoration(
                   labelText: context.localize.go_sleep_time,
-                  floatingLabelBehavior: FloatingLabelBehavior.always,
-                  icon: const Icon(Icons.bedtime, color: AppColors.light),
-                ),
-              ),
-              const SizedBox(height: AppDimensions.heightHuge),
-              FormBuilderTextField(
-                name: "fall_asleep_time",
-                keyboardType: TextInputType.number,
-                validator: FormBuilderValidators.compose([
-                  FormBuilderValidators.required(
-                    errorText: context.localize.required_field_error,
-                  ),
-                ]),
-                decoration: InputDecoration(
-                  labelText: context.localize.fall_asleep_time,
                   floatingLabelBehavior: FloatingLabelBehavior.always,
                   icon: const Icon(Icons.bedtime, color: AppColors.light),
                 ),
@@ -154,14 +141,14 @@ class QuestionsScreen extends StatelessWidget {
                 ),
                 child: FormBuilderSlider(
                   name: "sleep_rate",
-                  divisions: 5,
-                  initialValue: 0,
-                  min: 0,
-                  max: 5,
+                  divisions: 9,
+                  initialValue: 1,
+                  min: 1,
+                  max: 10,
                   activeColor: AppColors.light,
                   inactiveColor: AppColors.amethyst,
                   minValueWidget: (min) => const SizedBox(),
-                  valueWidget: (value) => Text("$value / 5"),
+                  valueWidget: (value) => Text("$value / 10"),
                   maxValueWidget: (max) => const SizedBox(),
                   validator: FormBuilderValidators.compose([
                     FormBuilderValidators.required(
@@ -206,8 +193,41 @@ class QuestionsScreen extends StatelessWidget {
                       if (formKey.currentState
                               ?.saveAndValidate(focusOnInvalid: false) ??
                           false) {
-                        // TODOsave form results to backend
-                        await context.router.push(const ThankYouRoute());
+                        final formData = formKey.currentState!.value;
+
+                        await QuestionsService.submitSurveyResponse(
+                          formData["bedtime"],
+                          formData["go_sleep_time"],
+                          formData["wakeup_time"],
+                          int.tryParse(
+                                formData["awekenings_times"] as String,
+                              ) ??
+                              0,
+                          formData["leave_time"],
+                          Duration(
+                            minutes:
+                                int.parse(formData["awakening_time_total"]),
+                          ),
+                          SleepScore.fromJson(
+                            switch (formData["sleep_rate"]) {
+                              "1" => "one",
+                              "2" => "two",
+                              "3" => "three",
+                              "4" => "four",
+                              "5" => "five",
+                              "6" => "six",
+                              "7" => "seven",
+                              "8" => "eight",
+                              "9" => "nine",
+                              "10" => "ten",
+                              _ => "one",
+                            },
+                          ),
+                        );
+
+                        if (context.mounted) {
+                          await context.router.push(const ThankYouRoute());
+                        }
                       }
                     },
                   ),

@@ -10,26 +10,29 @@ class ThankYouScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            context.localize.thank_you,
-            style: context.theme.textTheme.headlineMedium,
-            textAlign: TextAlign.center,
-          ),
-          const SizedBox(height: AppDimensions.heightBig),
-          Text(
-            context.localize.final_emotes,
-            style: context.theme.textTheme.bodyMedium,
-            textAlign: TextAlign.center,
-          ),
-          const SizedBox(height: AppDimensions.heightBig),
-          TextButton(
-            onPressed: () => context.router.popUntilRoot(),
-            child: Text(context.localize.back),
-          ),
-        ],
+      body: Padding(
+        padding: const EdgeInsets.all(AppDimensions.heightHuge),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              context.localize.thank_you,
+              style: context.theme.textTheme.headlineMedium,
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: AppDimensions.heightBig),
+            Text(
+              context.localize.final_emotes,
+              style: context.theme.textTheme.bodyMedium,
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: AppDimensions.heightBig),
+            TextButton(
+              onPressed: () => context.router.popUntilRoot(),
+              child: Text(context.localize.back),
+            ),
+          ],
+        ),
       ),
     );
   }
