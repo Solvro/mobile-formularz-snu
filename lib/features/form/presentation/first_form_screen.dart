@@ -3,6 +3,7 @@ import "package:flutter/material.dart";
 import "package:flutter_hooks/flutter_hooks.dart";
 import "package:sleep_app/features/alarm/presentation/alarm_info.dart";
 import "package:sleep_app/features/email/data/email_local_repository.dart";
+import "package:sleep_app/theme/app_colors.dart";
 
 import "../../../constants/app_dimensions.dart";
 import "../../../extensions/context_extensions.dart";
@@ -40,6 +41,31 @@ class FirstFormScreen extends HookWidget {
       future: Future.microtask(FormService.hasTodayAlreadySent),
       builder: (context, snapshot) {
         return Scaffold(
+          bottomSheet: DraggableScrollableSheet(
+            snap: true,
+            expand: false,
+            snapSizes: const [
+              0.1,
+              0.5,
+              0.8,
+            ],
+            minChildSize: 0.1,
+            maxChildSize: 0.8,
+            builder: (context, scrollController) => DecoratedBox(
+              decoration: const BoxDecoration(
+                border: Border(
+                  top: BorderSide(
+                    color: AppColors.lavenda,
+                    width: 3,
+                  ),
+                ),
+              ),
+              child: ListView(
+                controller: scrollController,
+                children: const [AlarmInfo()],
+              ),
+            ),
+          ),
           appBar: AppBar(
             actions: [
               PopupMenuButton<PopupMenuItemAction>(
@@ -60,13 +86,11 @@ class FirstFormScreen extends HookWidget {
               ),
             ],
           ),
-          bottomNavigationBar: const Footer(),
+          // bottomNavigationBar: const Footer(),
           body: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const TextLogo(),
               TodaySentConsumer(snapshot: snapshot),
-              const AlarmInfo(),
             ],
           ),
         );

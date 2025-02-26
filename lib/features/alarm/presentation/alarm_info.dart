@@ -30,7 +30,12 @@ class AlarmInfo extends HookWidget {
     return Padding(
       padding: const EdgeInsets.all(AppDimensions.heightMedium),
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
+          const Icon(
+            Icons.alarm,
+            size: 100,
+          ),
           Text(
             "Następny alarm przypominający o ankiecie ustawiono na: ${data.time.format(context)}",
             style: context.theme.textTheme.bodyLarge,

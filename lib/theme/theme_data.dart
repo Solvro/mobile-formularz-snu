@@ -62,4 +62,10 @@ final ThemeData customTheme = ThemeData(
     behavior: SnackBarBehavior.floating,
     elevation: 5,
   ),
+  textButtonTheme: TextButtonThemeData(
+    style: TextButton.styleFrom(
+      foregroundColor: AppColors.lavenda,
+      textStyle: const TextStyle(fontSize: AppDimensions.fontSizeSmall),
+    ),
+  ),
 );
