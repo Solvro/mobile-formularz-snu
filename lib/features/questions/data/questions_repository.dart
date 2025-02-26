@@ -9,7 +9,7 @@ class QuestionsRepository {
     int midNightAwaikingsCount,
     DateTime outBedTime,
     Duration totalMidNightAwaikingsTime,
-    SleepScore sleepQuality,
+    SleepScore2 sleepQuality,
     String email,
   ) async {
     await getIt<Client>().formEntry.submitForm(

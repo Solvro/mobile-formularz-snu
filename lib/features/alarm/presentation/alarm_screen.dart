@@ -116,7 +116,7 @@ class AlarmScreen extends HookWidget {
                     const SizedBox(height: AppDimensions.heightSmall),
                     AnimatedOpacity(
                       duration: const Duration(milliseconds: 150),
-                      opacity: !isAlarmEnabled.value ? 1 : 0,
+                      opacity: !isAlarmEnabled.value ? 0 : 1,
                       child: Container(
                         padding: const EdgeInsets.symmetric(
                           vertical: AppDimensions.paddingMedium,

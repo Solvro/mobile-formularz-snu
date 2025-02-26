@@ -10,7 +10,7 @@ class QuestionsService {
     int midNightAwaikingsCount,
     DateTime outBedTime,
     Duration totalMidNightAwaikingsTime,
-    SleepScore sleepQuality,
+    SleepScore2 sleepQuality,
   ) async {
     final email = await EmailLocalRepository.getEnrolledEmail();
     if (email == null) {

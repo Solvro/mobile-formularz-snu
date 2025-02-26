@@ -409,11 +409,11 @@ packages:
     dependency: "direct main"
     description:
       path: formularz_snu_client
-      ref: "v0.0.2"
-      resolved-ref: c25f43163a585b999c1d0042f9d8f506370f6f33
+      ref: "v0.0.3"
+      resolved-ref: "29778ae87d40892ce1a54c4c118f111a22ad19c8"
       url: "https://github.com/Solvro/backend-formularz-snu.git"
     source: git
-    version: "0.0.2"
+    version: "0.0.3"
   frontend_server_client:
     dependency: transitive
     description:
