@@ -2,6 +2,7 @@ import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
 import "package:flutter_form_builder/flutter_form_builder.dart";
 import "package:form_builder_validators/form_builder_validators.dart";
+import "package:sleep_app/features/email/presentation/wrong_email_dialog.dart";
 
 import "../../../constants/app_dimensions.dart";
 import "../../../extensions/context_extensions.dart";
@@ -29,9 +30,7 @@ class EmailScreen extends StatelessWidget {
         if (!context.mounted) return;
 
         if (!success) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(context.localize.not_enrolled)),
-          );
+          await WrongEmailDialog.showWrongEmailDialog(context);
         } else {
           await context.router.replaceAll([const FirstFormRoute()]);
         }
