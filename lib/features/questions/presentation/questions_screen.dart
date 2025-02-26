@@ -6,6 +6,7 @@ import "package:formularz_snu_client/formularz_snu_client.dart";
 import "package:sleep_app/constants/app_dimensions.dart";
 import "package:sleep_app/extensions/context_extensions.dart";
 import "package:sleep_app/features/questions/business/questions_service.dart";
+import "package:sleep_app/gen/assets.gen.dart";
 import "package:sleep_app/navigation/app_router.dart";
 import "package:sleep_app/theme/app_colors.dart";
 
@@ -259,7 +260,18 @@ class QuestionsScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              const SizedBox(height: 3 * AppDimensions.heightHuge),
+              const SizedBox(height: AppDimensions.heightMedium),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    Assets.solvro.path,
+                    width: 150,
+                    height: 100,
+                  ),
+                ],
+              ),
+              const SizedBox(height: AppDimensions.heightSmall),
             ],
           ),
         ),
