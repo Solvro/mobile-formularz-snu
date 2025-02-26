@@ -68,4 +68,15 @@ final ThemeData customTheme = ThemeData(
       textStyle: const TextStyle(fontSize: AppDimensions.fontSizeSmall),
     ),
   ),
+  outlinedButtonTheme: OutlinedButtonThemeData(
+    style: OutlinedButton.styleFrom(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(AppDimensions.borderRadiusMedium),
+      ),
+      foregroundColor: AppColors.lavenda,
+      textStyle: const TextStyle(
+        fontSize: AppDimensions.fontSizeSmall,
+      ),
+    ),
+  ),
 );

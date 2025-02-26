@@ -7,7 +7,6 @@ import "package:sleep_app/constants/app_dimensions.dart";
 import "package:sleep_app/extensions/context_extensions.dart";
 import "package:sleep_app/features/alarm/data/alarm_cache_repository.dart";
 import "package:sleep_app/navigation/app_router.dart";
-import "package:sleep_app/theme/app_colors.dart";
 
 class AlarmInfo extends HookWidget {
   const AlarmInfo();
@@ -36,18 +35,17 @@ class AlarmInfo extends HookWidget {
             Icons.alarm,
             size: 100,
           ),
+          const SizedBox(height: AppDimensions.heightMedium),
           Text(
             "Następny alarm przypominający o ankiecie ustawiono na: ${data.time.format(context)}",
             style: context.theme.textTheme.bodyLarge,
             textAlign: TextAlign.center,
           ),
-          TextButton(
+          const SizedBox(height: AppDimensions.heightMedium),
+          OutlinedButton(
             onPressed: () {
               unawaited(context.router.push(const AlarmRoute()));
             },
-            style: TextButton.styleFrom(
-              foregroundColor: AppColors.lavenda,
-            ),
             child: const Text("Zmień alarm"),
           ),
         ],

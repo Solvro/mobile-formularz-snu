@@ -3,12 +3,12 @@ import "package:flutter/material.dart";
 import "package:flutter_hooks/flutter_hooks.dart";
 import "package:sleep_app/features/alarm/presentation/alarm_info.dart";
 import "package:sleep_app/features/email/data/email_local_repository.dart";
+import "package:sleep_app/gen/assets.gen.dart";
 import "package:sleep_app/theme/app_colors.dart";
 
 import "../../../constants/app_dimensions.dart";
 import "../../../extensions/context_extensions.dart";
 import "../../../navigation/app_router.dart";
-import "../../../widgets/footer.dart";
 import "../../../widgets/logo.dart";
 import "../business/form_service.dart";
 
@@ -23,17 +23,10 @@ class FirstFormScreen extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final onPopupMenuClicked = useCallback((PopupMenuItemAction action) async {
-      switch (action) {
-        case PopupMenuItemAction.logOut:
-          {
-            await EmailLocalRepository.deleteEmail();
-            if (context.mounted) {
-              await context.router.replaceAll([const HomeRoute()]);
-            }
-          }
-        case PopupMenuItemAction.setAlarm:
-          await context.router.push(const AlarmRoute());
+    final logOut = useCallback(() async {
+      await EmailLocalRepository.deleteEmail();
+      if (context.mounted) {
+        await context.router.replaceAll([const HomeRoute()]);
       }
     });
 
@@ -41,56 +34,48 @@ class FirstFormScreen extends HookWidget {
       future: Future.microtask(FormService.hasTodayAlreadySent),
       builder: (context, snapshot) {
         return Scaffold(
-          bottomSheet: DraggableScrollableSheet(
-            snap: true,
-            expand: false,
-            snapSizes: const [
-              0.1,
-              0.5,
-              0.8,
+          appBar: AppBar(
+            actions: [
+              TextButton(
+                onPressed: logOut,
+                style: TextButton.styleFrom(
+                  foregroundColor: AppColors.light,
+                ),
+                child: const Text("Wyloguj się"),
+              ),
             ],
-            minChildSize: 0.1,
-            maxChildSize: 0.8,
-            builder: (context, scrollController) => DecoratedBox(
-              decoration: const BoxDecoration(
-                border: Border(
-                  top: BorderSide(
-                    color: AppColors.lavenda,
-                    width: 3,
+          ),
+          bottomNavigationBar: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset(
+                Assets.solvro.path,
+                width: 150,
+                height: 100,
+              ),
+            ],
+          ),
+          body: Column(
+            children: [
+              Expanded(
+                child: Align(
+                  alignment: const Alignment(0, -1 / 2),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const TextLogo(),
+                      TodaySentConsumer(snapshot: snapshot),
+                    ],
                   ),
                 ),
               ),
-              child: ListView(
-                controller: scrollController,
-                children: const [AlarmInfo()],
+              const Divider(
+                color: AppColors.lavenda,
+                thickness: 3,
               ),
-            ),
-          ),
-          appBar: AppBar(
-            actions: [
-              PopupMenuButton<PopupMenuItemAction>(
-                icon: const Icon(Icons.more_vert),
-                onSelected: onPopupMenuClicked,
-                itemBuilder: (BuildContext context) {
-                  return [
-                    const PopupMenuItem<PopupMenuItemAction>(
-                      value: PopupMenuItemAction.logOut,
-                      child: Text("Wyloguj się"),
-                    ),
-                    const PopupMenuItem<PopupMenuItemAction>(
-                      value: PopupMenuItemAction.setAlarm,
-                      child: Text("Ustaw budzik"),
-                    ),
-                  ];
-                },
+              const Expanded(
+                child: Center(child: AlarmInfo()),
               ),
-            ],
-          ),
-          // bottomNavigationBar: const Footer(),
-          body: Column(
-            children: [
-              const TextLogo(),
-              TodaySentConsumer(snapshot: snapshot),
             ],
           ),
         );
@@ -124,7 +109,7 @@ class TodaySentConsumer extends StatelessWidget {
                   "Dzisiaj jeszcze nie wypełniłeś ankiety. Zapraszamy do wypełnienia!",
                   textAlign: TextAlign.center,
                 ),
-                const SizedBox(height: AppDimensions.heightBig),
+                const SizedBox(height: 2 * AppDimensions.heightBig),
                 ElevatedButton(
                   onPressed: () async {
                     await context.router.push(const QuestionsRoute());
