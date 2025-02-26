@@ -21,15 +21,9 @@ class ThankYouScreen extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: AppDimensions.heightBig),
-            Text(
-              context.localize.final_emotes,
-              style: context.theme.textTheme.bodyMedium,
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: AppDimensions.heightBig),
             ElevatedButton(
               onPressed: () => context.router.popUntilRoot(),
-              child: Text(context.localize.back),
+              child: const Text("Powrót do strony głównej"),
             ),
           ],
         ),

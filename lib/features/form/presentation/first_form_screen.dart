@@ -93,9 +93,14 @@ class TodaySentConsumer extends StatelessWidget {
           if (!snapshot.hasError) {
             final isSent = snapshot.data ?? false;
             if (isSent) {
-              return const Text(
-                "Dzisiaj ankieta została ju wypełniona. Dziękujemy i zapraszamy jutro. Pamiętaj o opcji ustawienia budzika w naszej aplikacji!",
-                textAlign: TextAlign.center,
+              return const Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: AppDimensions.heightBig,
+                ),
+                child: Text(
+                  "Dzisiaj ankieta została już wypełniona. Dziękujemy i zapraszamy jutro. Pamiętaj o opcji ustawienia budzika w naszej aplikacji!",
+                  textAlign: TextAlign.center,
+                ),
               );
             }
             return Column(
