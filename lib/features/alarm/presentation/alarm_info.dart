@@ -36,17 +36,34 @@ class AlarmInfo extends HookWidget {
             size: 100,
           ),
           const SizedBox(height: AppDimensions.heightMedium),
-          Text(
-            "Następny alarm przypominający o ankiecie ustawiono na: ${data.time.format(context)}",
-            style: context.theme.textTheme.bodyLarge,
-            textAlign: TextAlign.center,
-          ),
+          if (data.isEnabled)
+            RichText(
+              text: TextSpan(
+                text: "Następny alarm przypominający o ankiecie ustawiono na: ",
+                style: context.theme.textTheme.bodyLarge,
+                children: [
+                  TextSpan(
+                    text: data.time.format(context),
+                    style: context.theme.textTheme.bodyLarge
+                        ?.copyWith(fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
+              textAlign: TextAlign.center,
+            ),
+          if (!data.isEnabled)
+            const Text(
+              "Alarm jest wyłączony. Ustaw alarm, aby otrzymywać przypomnienie.",
+              textAlign: TextAlign.center,
+            ),
           const SizedBox(height: AppDimensions.heightMedium),
           OutlinedButton(
             onPressed: () {
               unawaited(context.router.push(const AlarmRoute()));
             },
-            child: const Text("Zmień alarm"),
+            child: data.isEnabled
+                ? const Text("Zmień alarm")
+                : const Text("Ustaw alarm"),
           ),
         ],
       ),

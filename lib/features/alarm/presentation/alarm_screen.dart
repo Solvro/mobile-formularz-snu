@@ -56,67 +56,117 @@ class AlarmScreen extends HookWidget {
     }
 
     return Scaffold(
-      appBar: AppBar(title: Text(context.localize.alarm_settings)),
-      floatingActionButton: Padding(
-        padding: const EdgeInsets.only(
+      appBar: AppBar(title: const Text("Ustawienia alarmu")),
+      floatingActionButton: const Padding(
+        padding: EdgeInsets.only(
           bottom: AppDimensions.paddingMedium,
           right: AppDimensions.paddingMedium,
-        ),
-        child: FloatingActionButton(
-          onPressed: () async {
-            await saveAlarmSettings();
-            if (!context.mounted) return;
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text(context.localize.alarm_settings_saved)),
-            );
-            context.router.popForced();
-          },
-          backgroundColor: AppColors.amethyst,
-          child: const Icon(Icons.done, color: AppColors.dark),
         ),
       ),
       body: Padding(
         padding:
             const EdgeInsets.symmetric(horizontal: AppDimensions.paddingBig),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  context.localize.enable_alarm,
-                  style: const TextStyle(fontSize: AppDimensions.fontSizeSmall),
-                ),
-                Switch(
-                  value: isAlarmEnabled.value,
-                  onChanged: (value) => isAlarmEnabled.value = value,
-                ),
-              ],
+            const SizedBox(height: AppDimensions.heightBig),
+            Padding(
+              padding: const EdgeInsets.all(AppDimensions.heightSmall / 3),
+              child: Text(
+                "Ustaw alarm, aby pamiętać o codziennym wypełnieniu ankiety.\nRekomendujemy godzinę poranną, najpóźniej 60 minut po przebudzeniu.  ⏰",
+                style: context.theme.textTheme.headlineMedium,
+                textAlign: TextAlign.left,
+              ),
             ),
-            if (isAlarmEnabled.value)
-              const SizedBox(height: AppDimensions.heightSmall),
-            if (isAlarmEnabled.value)
-              GestureDetector(
-                onTap: () async => selectTime(context),
-                child: Container(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: AppDimensions.paddingMedium,
-                    horizontal: AppDimensions.paddingBig,
-                  ),
-                  decoration: BoxDecoration(
-                    borderRadius:
-                        BorderRadius.circular(AppDimensions.borderRadiusMedium),
-                    border: Border.all(color: AppColors.amethyst, width: 2),
-                  ),
-                  child: Text(
-                    context.localize
-                        .alarm_time(selectedTime.value.format(context)),
-                    style: context.theme.textTheme.bodyMedium,
-                  ),
+            const SizedBox(height: AppDimensions.heightMedium),
+            Expanded(
+              child: Align(
+                alignment: const Alignment(0, -1 / 2),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Spacer(),
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                        vertical: AppDimensions.paddingMedium,
+                        horizontal: AppDimensions.paddingBig,
+                      ),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(
+                          AppDimensions.borderRadiusMedium,
+                        ),
+                        border: Border.all(color: AppColors.amethyst, width: 2),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            context.localize.enable_alarm,
+                            style: const TextStyle(
+                              fontSize: AppDimensions.fontSizeSmall,
+                            ),
+                          ),
+                          Switch(
+                            activeColor: AppColors.light,
+                            value: isAlarmEnabled.value,
+                            onChanged: (value) => isAlarmEnabled.value = value,
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: AppDimensions.heightSmall),
+                    AnimatedOpacity(
+                      duration: const Duration(milliseconds: 150),
+                      opacity: !isAlarmEnabled.value ? 1 : 0,
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                          vertical: AppDimensions.paddingMedium,
+                          horizontal: AppDimensions.paddingBig,
+                        ).copyWith(right: AppDimensions.heightSmall / 2),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(
+                            AppDimensions.borderRadiusMedium,
+                          ),
+                          border:
+                              Border.all(color: AppColors.amethyst, width: 2),
+                        ),
+                        child: Row(
+                          children: [
+                            Text(
+                              context.localize.alarm_time(
+                                selectedTime.value.format(context),
+                              ),
+                              style: context.theme.textTheme.bodyMedium,
+                            ),
+                            const Spacer(),
+                            TextButton.icon(
+                              style: TextButton.styleFrom(
+                                foregroundColor: AppColors.light,
+                                iconColor: AppColors.light,
+                              ),
+                              onPressed: () async {
+                                await selectTime(context);
+                              },
+                              icon: const Icon(Icons.edit),
+                              label: const Text("Edytuj"),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    const Spacer(flex: 3),
+                    ElevatedButton(
+                      onPressed: () async {
+                        await saveAlarmSettings();
+                        if (!context.mounted) return;
+                        context.router.popForced();
+                      },
+                      child: const Text("Zapisz alarm"),
+                    ),
+                    const Spacer(flex: 3),
+                  ],
                 ),
               ),
-            const SizedBox(height: 4 * AppDimensions.heightHuge),
+            ),
           ],
         ),
       ),

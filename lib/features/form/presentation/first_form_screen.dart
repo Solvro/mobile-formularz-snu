@@ -12,11 +12,6 @@ import "../../../navigation/app_router.dart";
 import "../../../widgets/logo.dart";
 import "../business/form_service.dart";
 
-enum PopupMenuItemAction {
-  logOut,
-  setAlarm,
-}
-
 @RoutePage()
 class FirstFormScreen extends HookWidget {
   const FirstFormScreen({super.key});
