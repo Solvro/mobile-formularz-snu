@@ -13,4 +13,9 @@ class EmailLocalRepository {
     final prefs = await _prefs;
     return prefs.getString("email");
   }
+
+  static Future<void> deleteEmail() async {
+    final prefs = await _prefs;
+    await prefs.remove("email");
+  }
 }
