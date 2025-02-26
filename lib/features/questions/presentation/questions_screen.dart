@@ -2,18 +2,23 @@ import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
 import "package:flutter_form_builder/flutter_form_builder.dart";
 import "package:form_builder_validators/form_builder_validators.dart";
+import "package:formularz_snu_client/formularz_snu_client.dart";
 import "package:sleep_app/constants/app_dimensions.dart";
 import "package:sleep_app/extensions/context_extensions.dart";
+import "package:sleep_app/features/questions/data/questions_repository.dart";
 import "package:sleep_app/navigation/app_router.dart";
 import "package:sleep_app/theme/app_colors.dart";
 
 @RoutePage()
 class QuestionsScreen extends StatelessWidget {
-  const QuestionsScreen({super.key});
+  const QuestionsScreen({super.key, required this.email});
+
+  final String email;
 
   @override
   Widget build(BuildContext context) {
     final formKey = GlobalKey<FormBuilderState>();
+    final questionsRepository = QuestionsRepository();
 
     return Scaffold(
       appBar: AppBar(title: Text(context.localize.questions)),
@@ -69,8 +74,9 @@ class QuestionsScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: AppDimensions.heightHuge),
-              FormBuilderTextField(
+              FormBuilderDateTimePicker(
                 name: "fall_asleep_time",
+                inputType: InputType.time,
                 keyboardType: TextInputType.number,
                 validator: FormBuilderValidators.compose([
                   FormBuilderValidators.required(
@@ -206,7 +212,21 @@ class QuestionsScreen extends StatelessWidget {
                       if (formKey.currentState
                               ?.saveAndValidate(focusOnInvalid: false) ??
                           false) {
-                        // TODOsave form results to backend
+
+                        final formData = formKey.currentState!.value;
+                        
+                        await questionsRepository.submitForm(
+                          formData["bedtime"] as DateTime, 
+                          formData["fall_asleep_time"] as DateTime,
+                          formData["wakeup_time"] as DateTime,
+                          int.tryParse(formData["awekenings_times"] as String) ?? 0,
+                          formData["leave_time"] as DateTime,
+                          Duration(minutes: formData["awakening_time_total"]),
+                          formData["sleep_rate"] as SleepScore,
+                          email,
+                        );
+
+                        if (!context.mounted) return;
                         await context.router.push(const ThankYouRoute());
                       }
                     },

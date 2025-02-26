@@ -27,7 +27,7 @@ class HomeScreen extends StatelessWidget {
 
         final studyInProgress = await homeRepository.isStudyInProgress();
         final enrolled = await homeRepository.doesEmailExist(email);
-        final hasAlreadySentToday = await homeRepository.hasTodayAlreadySentResponse(email);
+        //final hasAlreadySentToday = await homeRepository.hasTodayAlreadySentResponse(email);
 
         if (!context.mounted) return;
 
@@ -42,13 +42,13 @@ class HomeScreen extends StatelessWidget {
             SnackBar(content: Text(context.localize.not_enrolled)),
           );
         }
-        else if (hasAlreadySentToday) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(context.localize.alread_sent_today)),
-          );
-        }
+        // else if (hasAlreadySentToday) {
+        //   ScaffoldMessenger.of(context).showSnackBar(
+        //     SnackBar(content: Text(context.localize.alread_sent_today)),
+        //   );
+        // }
         else {
-          await context.router.push(const QuestionsRoute());
+          await context.router.push(QuestionsRoute(email: email));
         }
       }
     }
