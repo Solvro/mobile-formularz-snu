@@ -3,6 +3,7 @@ import "package:flutter/material.dart";
 import "package:flutter_form_builder/flutter_form_builder.dart";
 import "package:form_builder_validators/form_builder_validators.dart";
 import "package:sleep_app/features/email/presentation/wrong_email_dialog.dart";
+import "package:sleep_app/widgets/footer.dart";
 
 import "../../../constants/app_dimensions.dart";
 import "../../../extensions/context_extensions.dart";
@@ -38,16 +39,16 @@ class EmailScreen extends StatelessWidget {
     }
 
     return Scaffold(
-      appBar: AppBar(title: const Text("Zapisz się")),
-      extendBodyBehindAppBar: true,
+      appBar: AppBar(),
+      bottomNavigationBar: const Footer(),
       body: Padding(
         padding:
             const EdgeInsets.symmetric(horizontal: AppDimensions.paddingBig),
         child: FormBuilder(
           key: _formKey,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              const SizedBox(height: AppDimensions.heightBig),
               Padding(
                 padding: const EdgeInsets.all(AppDimensions.heightSmall / 3),
                 child: Text(
@@ -56,29 +57,41 @@ class EmailScreen extends StatelessWidget {
                   textAlign: TextAlign.left,
                 ),
               ),
-              const SizedBox(height: AppDimensions.heightBig),
-              FormBuilderTextField(
-                name: "email",
-                decoration: InputDecoration(
-                  helperText: context.localize.email_text_field_hint,
-                  labelText: "Adres email",
-                  hintText: "twoj_mail@gmail.com",
-                  hintStyle: const TextStyle(color: AppColors.lightGray),
+              Expanded(
+                child: Align(
+                  alignment: const Alignment(0, -1 / 2),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      FormBuilderTextField(
+                        name: "email",
+                        decoration: InputDecoration(
+                          helperText: context.localize.email_text_field_hint,
+                          labelText: "Adres email",
+                          hintText: "twoj-mail@gmail.com",
+                          hintStyle:
+                              const TextStyle(color: AppColors.lightGray),
+                        ),
+                        validator: FormBuilderValidators.compose([
+                          FormBuilderValidators.required(
+                            errorText: context.localize.required_field_error,
+                          ),
+                          FormBuilderValidators.match(
+                            RegExp(emailRegexPattern),
+                            errorText: context.localize.email_error,
+                          ),
+                        ]),
+                      ),
+                      const SizedBox(
+                        height: 1.2 * AppDimensions.heightBig,
+                      ),
+                      ElevatedButton(
+                        onPressed: onSubmitEmail,
+                        child: Text(context.localize.next),
+                      ),
+                    ],
+                  ),
                 ),
-                validator: FormBuilderValidators.compose([
-                  FormBuilderValidators.required(
-                    errorText: context.localize.required_field_error,
-                  ),
-                  FormBuilderValidators.match(
-                    RegExp(emailRegexPattern),
-                    errorText: context.localize.email_error,
-                  ),
-                ]),
-              ),
-              const SizedBox(height: AppDimensions.heightMedium),
-              TextButton(
-                onPressed: onSubmitEmail,
-                child: Text(context.localize.next),
               ),
             ],
           ),

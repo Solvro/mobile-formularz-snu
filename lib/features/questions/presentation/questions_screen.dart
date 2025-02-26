@@ -171,9 +171,9 @@ class QuestionsScreen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  TextButton(
+                  ElevatedButton(
                     onPressed: () => context.router.popForced(),
-                    style: context.theme.textButtonTheme.style?.copyWith(
+                    style: context.theme.elevatedButtonTheme.style?.copyWith(
                       foregroundColor:
                           WidgetStateProperty.all(AppColors.amethyst),
                       backgroundColor:
@@ -187,7 +187,7 @@ class QuestionsScreen extends StatelessWidget {
                   const SizedBox(
                     width: AppDimensions.heightMedium,
                   ),
-                  TextButton(
+                  ElevatedButton(
                     child: Text(context.localize.submit),
                     onPressed: () async {
                       if (formKey.currentState

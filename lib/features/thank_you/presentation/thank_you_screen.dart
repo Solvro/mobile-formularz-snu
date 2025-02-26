@@ -27,7 +27,7 @@ class ThankYouScreen extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: AppDimensions.heightBig),
-            TextButton(
+            ElevatedButton(
               onPressed: () => context.router.popUntilRoot(),
               child: Text(context.localize.back),
             ),

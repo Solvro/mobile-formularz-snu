@@ -5,8 +5,7 @@ import "package:sleep_app/constants/app_dimensions.dart";
 import "package:sleep_app/extensions/context_extensions.dart";
 import "package:sleep_app/features/alarm/business/alarm_service.dart";
 import "package:sleep_app/features/alarm/data/alarm_cache_repository.dart";
-import "package:sleep_app/features/alarm/data/alarm_settings.dart"
-    show AlarmSettings;
+
 import "package:sleep_app/theme/app_colors.dart";
 
 @RoutePage()
@@ -15,14 +14,13 @@ class AlarmScreen extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final alarmCacheRepository = useMemoized(AlarmCacheRepository.new);
     final selectedTime = useState(const TimeOfDay(hour: 8, minute: 0));
     final isAlarmEnabled = useState(false);
 
     useEffect(
       () {
         Future.microtask(() async {
-          final alarmSettings = await alarmCacheRepository.loadAlarmSettings();
+          final alarmSettings = await AlarmLocalRepository.loadAlarmSettings();
           isAlarmEnabled.value = alarmSettings.isEnabled;
           selectedTime.value = alarmSettings.time;
         });
@@ -32,11 +30,11 @@ class AlarmScreen extends HookWidget {
     );
 
     Future<void> saveAlarmSettings() async {
-      final alarmSettings = AlarmSettings(
+      final alarmSettings = (
         isEnabled: isAlarmEnabled.value,
         time: selectedTime.value,
       );
-      await alarmCacheRepository.saveAlarmSettings(alarmSettings);
+      await AlarmLocalRepository.saveAlarmSettings(alarmSettings);
 
       if (isAlarmEnabled.value) {
         if (!context.mounted) return;

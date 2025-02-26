@@ -22,18 +22,20 @@ class HomeScreen extends StatelessWidget {
       future: Future.microtask(EmailLocalRepository.getEnrolledEmail),
       builder: (context, snapshot) {
         return Scaffold(
+          bottomNavigationBar: const Footer(),
           body: Padding(
             padding: const EdgeInsets.symmetric(
               horizontal: AppDimensions.paddingBig,
             ),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                const Logo(),
+                const Expanded(
+                  child: Center(child: Logo()),
+                ),
                 EnrolledEmailConsumer(
                   snapshot: snapshot,
                 ),
-                const Footer(),
               ],
             ),
           ),

@@ -7,7 +7,8 @@ final ThemeData customTheme = ThemeData(
   primaryColor: AppColors.amethyst,
   colorScheme: const ColorScheme.dark(
     primary: AppColors.amethyst,
-    secondary: AppColors.teal,
+    secondary: AppColors.lavenda,
+    error: AppColors.red,
   ),
   scaffoldBackgroundColor: AppColors.dark,
   textTheme: const TextTheme(
@@ -22,20 +23,34 @@ final ThemeData customTheme = ThemeData(
     ),
   ),
   inputDecorationTheme: InputDecorationTheme(
+    labelStyle: const TextStyle(color: AppColors.lavenda),
+    hintStyle: const TextStyle(color: AppColors.lavenda),
+    helperStyle: const TextStyle(color: AppColors.lavenda),
     border: OutlineInputBorder(
       borderRadius: BorderRadius.circular(AppDimensions.borderRadiusMedium),
       borderSide: const BorderSide(color: AppColors.light),
     ),
+    focusedBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(AppDimensions.borderRadiusMedium),
+      borderSide: const BorderSide(color: AppColors.lavenda),
+    ),
+    enabledBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(AppDimensions.borderRadiusMedium),
+      borderSide: const BorderSide(color: AppColors.lavenda),
+    ),
   ),
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
+      padding: const EdgeInsets.symmetric(
+        vertical: AppDimensions.paddingSmall,
+        horizontal: AppDimensions.paddingBig,
+      ),
       backgroundColor: AppColors.amethyst,
-      foregroundColor: AppColors.dark,
-      minimumSize: const Size(50, 50),
+      foregroundColor: AppColors.light,
+      textStyle: const TextStyle(fontSize: AppDimensions.fontSizeSmall),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(AppDimensions.borderRadiusMedium),
       ),
-      textStyle: const TextStyle(fontSize: AppDimensions.fontSizeMedium),
     ),
   ),
   snackBarTheme: SnackBarThemeData(
@@ -46,19 +61,5 @@ final ThemeData customTheme = ThemeData(
     ),
     behavior: SnackBarBehavior.floating,
     elevation: 5,
-  ),
-  textButtonTheme: TextButtonThemeData(
-    style: TextButton.styleFrom(
-      padding: const EdgeInsets.symmetric(
-        vertical: AppDimensions.paddingSmall,
-        horizontal: AppDimensions.paddingBig,
-      ),
-      backgroundColor: const Color.fromARGB(255, 120, 33, 219),
-      foregroundColor: AppColors.light,
-      textStyle: const TextStyle(fontSize: AppDimensions.fontSizeSmall),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(AppDimensions.borderRadiusMedium),
-      ),
-    ),
   ),
 );

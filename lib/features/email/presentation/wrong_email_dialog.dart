@@ -5,6 +5,13 @@ class WrongEmailDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(15),
+        side: BorderSide(
+          color: context.theme.colorScheme.error,
+          width: 2,
+        ),
+      ),
       title: const Text("Niepoprawny adres email"),
       content: Column(
         mainAxisSize: MainAxisSize.min,
@@ -23,7 +30,7 @@ class WrongEmailDialog extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            TextButton(
+            ElevatedButton(
               child: const Text("OK"),
               onPressed: () {
                 Navigator.of(context).pop();

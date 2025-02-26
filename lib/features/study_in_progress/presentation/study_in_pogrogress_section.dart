@@ -21,7 +21,7 @@ class StudyInPogrogressSection extends StatelessWidget {
         } else {
           final bool studyInProgress = snapshot.data ?? false;
           return studyInProgress
-              ? TextButton(
+              ? ElevatedButton(
                   onPressed: onPressed,
                   child: Text(
                     "Weź udział w badaniu",

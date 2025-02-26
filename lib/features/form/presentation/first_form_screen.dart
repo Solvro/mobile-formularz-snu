@@ -1,6 +1,7 @@
 import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
 import "package:flutter_hooks/flutter_hooks.dart";
+import "package:sleep_app/features/alarm/presentation/alarm_info.dart";
 import "package:sleep_app/features/email/data/email_local_repository.dart";
 
 import "../../../constants/app_dimensions.dart";
@@ -8,7 +9,6 @@ import "../../../extensions/context_extensions.dart";
 import "../../../navigation/app_router.dart";
 import "../../../widgets/footer.dart";
 import "../../../widgets/logo.dart";
-import "../../alarm/presentation/alarm_fab.dart";
 import "../business/form_service.dart";
 
 enum PopupMenuItemAction {
@@ -40,7 +40,6 @@ class FirstFormScreen extends HookWidget {
       future: Future.microtask(FormService.hasTodayAlreadySent),
       builder: (context, snapshot) {
         return Scaffold(
-          extendBodyBehindAppBar: true,
           appBar: AppBar(
             actions: [
               PopupMenuButton<PopupMenuItemAction>(
@@ -61,18 +60,14 @@ class FirstFormScreen extends HookWidget {
               ),
             ],
           ),
-          floatingActionButton: const AlarmFab(),
-          body: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const TextLogo(),
-                TodaySentConsumer(
-                  snapshot: snapshot,
-                ),
-                const Footer(),
-              ],
-            ),
+          bottomNavigationBar: const Footer(),
+          body: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const TextLogo(),
+              TodaySentConsumer(snapshot: snapshot),
+              const AlarmInfo(),
+            ],
           ),
         );
       },
@@ -106,7 +101,7 @@ class TodaySentConsumer extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: AppDimensions.heightBig),
-                TextButton(
+                ElevatedButton(
                   onPressed: () async {
                     await context.router.push(const QuestionsRoute());
                   },

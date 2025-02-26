@@ -10,6 +10,7 @@ class Footer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisSize: MainAxisSize.min,
       children: [
         const SizedBox(height: 3 * AppDimensions.heightBig),
         Text(
@@ -18,11 +19,12 @@ class Footer extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
+        const SizedBox(height: AppDimensions.heightBig),
         Image.asset(
           Assets.solvro.path,
           width: 150,
-          height: 150,
         ),
+        const SizedBox(height: 3 * AppDimensions.heightBig),
       ],
     );
   }
