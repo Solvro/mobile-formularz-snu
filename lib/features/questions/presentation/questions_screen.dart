@@ -1,5 +1,6 @@
 import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
+import "package:flutter/services.dart";
 import "package:flutter_form_builder/flutter_form_builder.dart";
 import "package:form_builder_validators/form_builder_validators.dart";
 import "package:formularz_snu_client/formularz_snu_client.dart";
@@ -109,6 +110,9 @@ class QuestionsScreen extends StatelessWidget {
               FormBuilderTextField(
                 name: "awakening_time_total",
                 keyboardType: TextInputType.number,
+                inputFormatters: [
+                  FilteringTextInputFormatter.digitsOnly,
+                ],
                 validator: FormBuilderValidators.compose([
                   FormBuilderValidators.required(
                     errorText: context.localize.required_field_error,

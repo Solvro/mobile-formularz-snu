@@ -15,7 +15,7 @@
     "go_sleep_time" : "The time you went to sleep",
     "fall_asleep_time" : "How long did it take you to fall asleep?",
     "awakening_times" : "How many times did you wake up during the night?",
-    "awakening_time_total" : "How long did these awakenings last in total?",
+    "awakening_time_total" : "How many minutes did these awakenings last in total?",
     "wake_up_time" : "What time did you wake up in the morning?",
     "leave_bed_time" : "What time did you get out of bed?",
     "sleep_rate" : "How would you rate your sleep quality? (0-5)",
