@@ -44,8 +44,8 @@ flutter_launcher_icons:
   ios: true
   web:
     generate: true
-    image_path: "assets/icon.png"
-  image_path: "assets/icon.png"
+    image_path: "assets/icon-square.png"
+  image_path: "assets/icon-square.png"
 
 flutter:
   generate: true
@@ -58,7 +58,7 @@ flutter:
 
 flutter_native_splash:
   color: "#131415"
-  image: assets/icon.png
+  image: assets/icon-square.png
   android_12:
     color: "#131415"
-    image: assets/icon.png
+    image: assets/icon-square.png

@@ -25,8 +25,8 @@ class Logo extends StatelessWidget {
       children: [
         Image.asset(
           Assets.icon.path,
-          width: 150,
-          height: 150,
+          width: 200,
+          height: 200,
         ),
         const SizedBox(height: AppDimensions.heightMedium),
         const TextLogo(),
