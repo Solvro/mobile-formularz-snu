@@ -31,9 +31,14 @@ class AlarmInfo extends HookWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          const Icon(
-            Icons.alarm,
-            size: 100,
+          const Flexible(
+            child: FittedBox(
+              fit: BoxFit.scaleDown,
+              child: Icon(
+                Icons.alarm,
+                size: 100,
+              ),
+            ),
           ),
           const SizedBox(height: AppDimensions.heightMedium),
           if (data.isEnabled)

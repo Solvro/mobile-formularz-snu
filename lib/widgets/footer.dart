@@ -12,7 +12,6 @@ class Footer extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        const SizedBox(height: 3 * AppDimensions.heightBig),
         Text(
           "Aplikacja stworzona przez Koło Naukowe Solvro",
           style: context.theme.textTheme.bodySmall?.copyWith(
@@ -24,7 +23,7 @@ class Footer extends StatelessWidget {
           Assets.solvro.path,
           width: 150,
         ),
-        const SizedBox(height: 3 * AppDimensions.heightBig),
+        const SizedBox(height: 2 * AppDimensions.heightBig),
       ],
     );
   }

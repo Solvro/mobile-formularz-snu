@@ -73,7 +73,10 @@ class AlarmScreen extends HookWidget {
               padding: const EdgeInsets.all(AppDimensions.heightSmall / 3),
               child: Text(
                 "Ustaw alarm, aby pamiętać o codziennym wypełnieniu ankiety.\nRekomendujemy godzinę poranną, najpóźniej 60 minut po przebudzeniu.  ⏰",
-                style: context.theme.textTheme.headlineMedium,
+                style: context.theme.textTheme.headlineMedium?.copyWith(
+                  fontSize:
+                      MediaQuery.of(context).size.height < 600 ? 18 : null,
+                ),
                 textAlign: TextAlign.left,
               ),
             ),
@@ -162,6 +165,7 @@ class AlarmScreen extends HookWidget {
                       },
                       child: const Text("Zapisz alarm"),
                     ),
+                    const SizedBox(height: AppDimensions.heightBig),
                     const Spacer(flex: 3),
                   ],
                 ),

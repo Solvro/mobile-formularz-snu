@@ -28,10 +28,11 @@ class HomeScreen extends StatelessWidget {
               horizontal: AppDimensions.paddingBig,
             ),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                const Expanded(
-                  child: Center(child: Logo()),
+                const Padding(
+                  padding: EdgeInsets.only(top: AppDimensions.heightHuge),
+                  child: Logo(),
                 ),
                 EnrolledEmailConsumer(
                   snapshot: snapshot,

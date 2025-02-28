@@ -1,6 +1,6 @@
 import "package:flutter/material.dart";
+import "package:sleep_app/constants/app_dimensions.dart";
 
-import "../constants/app_dimensions.dart";
 import "../gen/assets.gen.dart";
 
 class TextLogo extends StatelessWidget {
@@ -8,15 +8,9 @@ class TextLogo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(
-        top: AppDimensions.heightMedium,
-        bottom: AppDimensions.heightBig,
-      ),
-      child: Text(
-        "Badanie snu",
-        style: Theme.of(context).textTheme.headlineMedium,
-      ),
+    return Text(
+      "Badanie snu",
+      style: Theme.of(context).textTheme.headlineMedium,
     );
   }
 }
@@ -34,6 +28,7 @@ class Logo extends StatelessWidget {
           width: 150,
           height: 150,
         ),
+        const SizedBox(height: AppDimensions.heightMedium),
         const TextLogo(),
       ],
     );
