@@ -37,6 +37,7 @@ class MyApp extends StatelessWidget {
         Locale("en", "US"),
         Locale("pl", "PL"),
       ],
+      locale: const Locale("pl", ""),
       theme: customTheme,
     );
   }
