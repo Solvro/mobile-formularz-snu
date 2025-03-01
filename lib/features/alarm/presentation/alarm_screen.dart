@@ -38,7 +38,7 @@ class AlarmScreen extends HookWidget {
 
       if (isAlarmEnabled.value) {
         if (context.mounted) {
-          await AlarmService.setDailyAlarm(context, selectedTime.value);
+          await AlarmService.setDailyAlarm(context, selectedTime.value, context.localize.alarm, context.localize.it_is_time, context.localize.stop,);
         }
       } 
       else {
