@@ -41,7 +41,6 @@ class AlarmService {
       ),
     );
 
-
     // ANDROID AND IOS SET UP REQUIRED
     final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
         FlutterLocalNotificationsPlugin();
@@ -51,7 +50,7 @@ class AlarmService {
 
     Future<void> initializeNotifications() async {
       const AndroidInitializationSettings initializationSettingsAndroid =
-          AndroidInitializationSettings('@mipmap/ic_launcher');
+          AndroidInitializationSettings("@mipmap-xxxhdpi/ic_launcher");
 
       final InitializationSettings initializationSettings =
           InitializationSettings(android: initializationSettingsAndroid);
@@ -62,8 +61,9 @@ class AlarmService {
         initializationSettings,
         onDidReceiveNotificationResponse: (NotificationResponse response) {
           // Handle when user taps the notification
+          debugPrint("dupa");
           stopAlarm();
-          navigatorKey.currentState?.pushNamed(FirstFormRoute.name);
+          navigatorKey.currentState?.pushNamed(HomeRoute.name);
         },
       );
     }
@@ -77,13 +77,16 @@ class AlarmService {
         importance: Importance.max,
         priority: Priority.high,
         ongoing: true, // Makes the notification persistent
-        actions: <AndroidNotificationAction>[
-          AndroidNotificationAction(
-            'dismiss_action',
-            'Dismiss',
-            cancelNotification: true, // Dismisses the notification on tap
-          ),
-        ],
+        fullScreenIntent: true,
+        category: AndroidNotificationCategory.alarm,
+        icon: "ic_launcher",
+        // actions: <AndroidNotificationAction>[
+        //   AndroidNotificationAction(
+        //     "dismiss_action",
+        //     'Dismiss',
+        //     cancelNotification: true,
+        //   ),
+        // ],
       );
 
       const NotificationDetails platformChannelSpecifics =
