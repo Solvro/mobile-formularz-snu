@@ -46,6 +46,9 @@ class AlarmService {
     final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
         FlutterLocalNotificationsPlugin();
 
+    await flutterLocalNotificationsPlugin.resolvePlatformSpecificImplementation<
+      AndroidFlutterLocalNotificationsPlugin>()?.requestNotificationsPermission();
+
     Future<void> initializeNotifications() async {
       const AndroidInitializationSettings initializationSettingsAndroid =
           AndroidInitializationSettings('@mipmap/ic_launcher');
@@ -53,11 +56,14 @@ class AlarmService {
       final InitializationSettings initializationSettings =
           InitializationSettings(android: initializationSettingsAndroid);
 
+
+
       await flutterLocalNotificationsPlugin.initialize(
         initializationSettings,
         onDidReceiveNotificationResponse: (NotificationResponse response) {
           // Handle when user taps the notification
-          navigatorKey.currentState?.pushNamed(ThankYouRoute.name);
+          stopAlarm();
+          navigatorKey.currentState?.pushNamed(FirstFormRoute.name);
         },
       );
     }
@@ -70,7 +76,14 @@ class AlarmService {
         channelDescription: 'Notification when alarm rings',
         importance: Importance.max,
         priority: Priority.high,
-        fullScreenIntent: true, // Opens app on click
+        ongoing: true, // Makes the notification persistent
+        actions: <AndroidNotificationAction>[
+          AndroidNotificationAction(
+            'dismiss_action',
+            'Dismiss',
+            cancelNotification: true, // Dismisses the notification on tap
+          ),
+        ],
       );
 
       const NotificationDetails platformChannelSpecifics =
@@ -83,6 +96,28 @@ class AlarmService {
         platformChannelSpecifics,
       );
     }
+
+    // Future<void> showAlarmNotification() async {
+    //   const AndroidNotificationDetails androidPlatformChannelSpecifics =
+    //       AndroidNotificationDetails(
+    //     'alarm_channel', // Channel ID
+    //     'Alarm Notifications', // Channel name
+    //     channelDescription: 'Notification when alarm rings',
+    //     importance: Importance.max,
+    //     priority: Priority.high,
+    //     fullScreenIntent: true, // Opens app on click
+    //   );
+
+    //   const NotificationDetails platformChannelSpecifics =
+    //       NotificationDetails(android: androidPlatformChannelSpecifics);
+
+    //   await flutterLocalNotificationsPlugin.show(
+    //     0, // Notification ID
+    //     'Alarm Ringing!', // Title
+    //     'Tap to stop the alarm', // Body
+    //     platformChannelSpecifics,
+    //   );
+    // }
 
     Alarm.ringing.listen((_) {
       debugPrint("dupa");
