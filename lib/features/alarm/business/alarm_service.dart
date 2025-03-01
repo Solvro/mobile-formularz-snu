@@ -60,7 +60,6 @@ class AlarmService {
       await flutterLocalNotificationsPlugin.initialize(
         initializationSettings,
         onDidReceiveNotificationResponse: (NotificationResponse response) {
-          // Handle when user taps the notification
           debugPrint("dupa");
           stopAlarm();
           navigatorKey.currentState?.pushNamed(HomeRoute.name);
@@ -71,12 +70,12 @@ class AlarmService {
     Future<void> showAlarmNotification() async {
       const AndroidNotificationDetails androidPlatformChannelSpecifics =
           AndroidNotificationDetails(
-        'alarm_channel', // Channel ID
-        'Alarm Notifications', // Channel name
+        'alarm_channel',
+        'Alarm Notifications', 
         channelDescription: 'Notification when alarm rings',
         importance: Importance.max,
         priority: Priority.high,
-        ongoing: true, // Makes the notification persistent
+        ongoing: true, 
         fullScreenIntent: true,
         category: AndroidNotificationCategory.alarm,
         icon: "ic_launcher",
@@ -93,9 +92,9 @@ class AlarmService {
           NotificationDetails(android: androidPlatformChannelSpecifics);
 
       await flutterLocalNotificationsPlugin.show(
-        0, // Notification ID
-        'Alarm Ringing!', // Title
-        'Tap to stop the alarm', // Body
+        0, 
+        'Alarm Ringing!',
+        'Tap to stop the alarm', 
         platformChannelSpecifics,
       );
     }
