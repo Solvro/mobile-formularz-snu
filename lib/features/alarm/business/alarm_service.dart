@@ -84,7 +84,7 @@ class AlarmService {
           ? alarmTime.add(const Duration(days: 1))
           : alarmTime,
       assetAudioPath: Assets.alarm,
-      volumeSettings: const VolumeSettings.fixed(volume: 0.01),
+      volumeSettings: const VolumeSettings.fixed(volume: 0.5),
       notificationSettings: NotificationSettings(
         title: titleText,
         body: bodyText,
