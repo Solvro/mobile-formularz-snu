@@ -1,6 +1,7 @@
 import "package:formularz_snu_client/formularz_snu_client.dart";
-import "package:sleep_app/features/email/data/email_local_repository.dart";
-import "package:sleep_app/features/questions/data/questions_repository.dart";
+
+import "../../email/data/email_local_repository.dart";
+import "../data/questions_repository.dart";
 
 class QuestionsService {
   static Future<void> submitSurveyResponse(
@@ -17,11 +18,19 @@ class QuestionsService {
       throw Exception("Email not found. Please enroll first.");
     }
     await QuestionsRepository().submitSurveyResponse(
-      inBedStartTime,
-      fallingAsleepTime,
-      wakeUpTime,
+      inBedStartTime.copyWith(
+        year: DateTime.now().year,
+      ),
+      fallingAsleepTime.copyWith(
+        year: DateTime.now().year,
+      ),
+      wakeUpTime.copyWith(
+        year: DateTime.now().year,
+      ),
       midNightAwaikingsCount,
-      outBedTime,
+      outBedTime.copyWith(
+        year: DateTime.now().year,
+      ),
       totalMidNightAwaikingsTime,
       sleepQuality,
       email,

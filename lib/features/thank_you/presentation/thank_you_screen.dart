@@ -1,8 +1,10 @@
 import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
-import "package:sleep_app/constants/app_dimensions.dart";
-import "package:sleep_app/extensions/context_extensions.dart";
-import "package:sleep_app/gen/assets.gen.dart";
+
+import "../../../constants/app_dimensions.dart";
+import "../../../extensions/context_extensions.dart";
+import "../../../gen/assets.gen.dart";
+import "../../../navigation/app_router.dart";
 
 @RoutePage()
 class ThankYouScreen extends StatelessWidget {
@@ -34,7 +36,8 @@ class ThankYouScreen extends StatelessWidget {
             ),
             const SizedBox(height: AppDimensions.heightBig),
             ElevatedButton(
-              onPressed: () => context.router.popUntilRoot(),
+              onPressed: () async =>
+                  context.router.replaceAll([const FirstFormRoute()]),
               child: const Text("Powrót do strony głównej"),
             ),
           ],

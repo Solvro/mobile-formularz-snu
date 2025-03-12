@@ -79,6 +79,7 @@ class _AlarmPopupRootState extends State<AlarmPopupRoot> {
       if (alarms.alarms.isEmpty) return;
       Logger().i("Alarm is ringing.");
       await AlarmDialog.showAlarmDialog(context);
+      await AlarmService.showAlarmNotification();
     });
   }
 
