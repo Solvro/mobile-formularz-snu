@@ -1,12 +1,12 @@
 import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
 import "package:flutter_hooks/flutter_hooks.dart";
-import "package:sleep_app/constants/app_dimensions.dart";
-import "package:sleep_app/extensions/context_extensions.dart";
-import "package:sleep_app/features/alarm/business/alarm_service.dart";
-import "package:sleep_app/features/alarm/data/alarm_cache_repository.dart";
 
-import "package:sleep_app/theme/app_colors.dart";
+import "../../../constants/app_dimensions.dart";
+import "../../../extensions/context_extensions.dart";
+import "../../../theme/app_colors.dart";
+import "../business/alarm_service.dart";
+import "../data/alarm_cache_repository.dart";
 
 @RoutePage()
 class AlarmScreen extends HookWidget {
@@ -38,10 +38,14 @@ class AlarmScreen extends HookWidget {
 
       if (isAlarmEnabled.value) {
         if (context.mounted) {
-          await AlarmService.setDailyAlarm(context, selectedTime.value, context.localize.alarm, context.localize.it_is_time, context.localize.stop,);
+          await AlarmService.setDailyAlarm(
+            selectedTime.value,
+            context.localize.alarm,
+            context.localize.it_is_time,
+            context.localize.stop,
+          );
         }
-      } 
-      else {
+      } else {
         await AlarmService.stopAlarm();
       }
     }

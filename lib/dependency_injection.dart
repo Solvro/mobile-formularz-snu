@@ -1,12 +1,10 @@
-import "package:flutter/material.dart";
 import "package:formularz_snu_client/formularz_snu_client.dart";
 import "package:get_it/get_it.dart";
 import "package:serverpod_flutter/serverpod_flutter.dart";
-import "package:sleep_app/navigation/app_router.dart";
+
+import "navigation/app_router.dart";
 
 final getIt = GetIt.instance;
-
-final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 void setupDependencyInjection() {
   getIt.registerLazySingleton<AppRouter>(AppRouter.new);
@@ -14,5 +12,4 @@ void setupDependencyInjection() {
     () => Client("https://api.formularz-snu.s.solvro.pl/")
       ..connectivityMonitor = FlutterConnectivityMonitor(),
   );
-  getIt.registerLazySingleton<GlobalKey<NavigatorState>>(GlobalKey<NavigatorState>.new);
 }
