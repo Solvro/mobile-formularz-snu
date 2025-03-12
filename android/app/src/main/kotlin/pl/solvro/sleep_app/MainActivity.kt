@@ -1,4 +1,4 @@
-package com.example.sleep_app
+package pl.solvro.sleep_app
 
 import io.flutter.embedding.android.FlutterActivity
 
