@@ -2,10 +2,12 @@
     <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
 
     <application
-        android:label="sleep_app"
+        android:label="Badanie snu"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+        <service android:name="com.gdelataillade.alarm.services.NotificationOnKillService" />
         <activity
+            android:enableOnBackInvokedCallback="true"
             android:name=".MainActivity"
             android:exported="true"
             android:launchMode="singleTop"
@@ -16,6 +18,7 @@
             android:windowSoftInputMode="adjustResize"
             android:showWhenLocked="true"
             android:turnScreenOn="true">
+
             <!-- Specifies an Android theme to apply to this Activity as soon as
                  the Android process has started. This theme is visible to the user
                  while the Flutter UI initializes. After that, this theme continues
@@ -56,4 +59,19 @@
             <data android:mimeType="text/plain"/>
         </intent>
     </queries>
+
+
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK"/>
+    <uses-permission android:name="android.permission.USE_EXACT_ALARM"/>
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+
 </manifest>
