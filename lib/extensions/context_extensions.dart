@@ -4,7 +4,8 @@ import "package:sleep_app/l10n/app_localizations_pl.dart";
 
 extension BuildContextX on BuildContext {
   AppLocalizations get localize {
-    return AppLocalizations.of(this) ?? AppLocalizationsPl();
+    // return AppLocalizations.of(this) ?? AppLocalizationsPl();
+    return AppLocalizationsPl();
   }
 }
 
