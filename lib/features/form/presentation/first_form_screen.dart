@@ -1,15 +1,16 @@
 import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
 import "package:flutter_hooks/flutter_hooks.dart";
-import "package:sleep_app/features/alarm/presentation/alarm_info.dart";
-import "package:sleep_app/features/email/data/email_local_repository.dart";
-import "package:sleep_app/gen/assets.gen.dart";
-import "package:sleep_app/theme/app_colors.dart";
 
 import "../../../constants/app_dimensions.dart";
 import "../../../extensions/context_extensions.dart";
+import "../../../gen/assets.gen.dart";
 import "../../../navigation/app_router.dart";
+import "../../../theme/app_colors.dart";
 import "../../../widgets/logo.dart";
+import "../../alarm/presentation/alarm_info.dart";
+import "../../email/data/email_local_repository.dart";
+import "../../study_in_progress/presentation/study_in_pogrogress_section.dart";
 import "../business/form_service.dart";
 
 @RoutePage()
@@ -25,56 +26,58 @@ class FirstFormScreen extends HookWidget {
       }
     });
 
-    return FutureBuilder(
-      future: Future.microtask(FormService.hasTodayAlreadySent),
-      builder: (context, snapshot) {
-        return Scaffold(
-          appBar: AppBar(
-            actions: [
-              TextButton(
-                onPressed: logOut,
-                style: TextButton.styleFrom(
-                  foregroundColor: AppColors.light,
+    return RedirectIfNotInProgressAnymore(
+      child: FutureBuilder(
+        future: Future.microtask(FormService.hasTodayAlreadySent),
+        builder: (context, snapshot) {
+          return Scaffold(
+            appBar: AppBar(
+              actions: [
+                TextButton(
+                  onPressed: logOut,
+                  style: TextButton.styleFrom(
+                    foregroundColor: AppColors.light,
+                  ),
+                  child: const Text("Wyloguj się"),
                 ),
-                child: const Text("Wyloguj się"),
-              ),
-            ],
-          ),
-          bottomNavigationBar: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset(
-                Assets.solvro.path,
-                width: 150,
-                height: 100,
-              ),
-            ],
-          ),
-          body: Column(
-            children: [
-              Expanded(
-                child: Align(
-                  alignment: const Alignment(0, -1 / 2),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      const TextLogo(),
-                      TodaySentConsumer(snapshot: snapshot),
-                    ],
+              ],
+            ),
+            bottomNavigationBar: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(
+                  Assets.solvro.path,
+                  width: 150,
+                  height: 100,
+                ),
+              ],
+            ),
+            body: Column(
+              children: [
+                Expanded(
+                  child: Align(
+                    alignment: const Alignment(0, -1 / 2),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        const TextLogo(),
+                        TodaySentConsumer(snapshot: snapshot),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              const Divider(
-                color: AppColors.lavenda,
-                thickness: 3,
-              ),
-              const Expanded(
-                child: Center(child: AlarmInfo()),
-              ),
-            ],
-          ),
-        );
-      },
+                const Divider(
+                  color: AppColors.lavenda,
+                  thickness: 3,
+                ),
+                const Expanded(
+                  child: Center(child: AlarmInfo()),
+                ),
+              ],
+            ),
+          );
+        },
+      ),
     );
   }
 }

@@ -67,7 +67,7 @@ class EnrolledEmailConsumer extends StatelessWidget {
                   },
                 );
               } else {
-                return const RedirectWidget();
+                return const RedirectWidget(FirstFormRoute());
               }
             }
             return Text(
@@ -85,14 +85,15 @@ class EnrolledEmailConsumer extends StatelessWidget {
 }
 
 class RedirectWidget extends HookWidget {
-  const RedirectWidget({super.key});
+  const RedirectWidget(this.route, {super.key});
+  final PageRouteInfo<void> route;
   @override
   Widget build(BuildContext context) {
     useEffect(
       () {
         Future.microtask(() async {
           if (!context.mounted) return;
-          await context.router.replaceAll([const FirstFormRoute()]);
+          await context.router.replaceAll([route]);
         });
         return null;
       },
