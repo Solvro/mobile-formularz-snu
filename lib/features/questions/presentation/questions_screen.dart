@@ -4,12 +4,13 @@ import "package:flutter/services.dart";
 import "package:flutter_form_builder/flutter_form_builder.dart";
 import "package:form_builder_validators/form_builder_validators.dart";
 import "package:formularz_snu_client/formularz_snu_client.dart";
-import "package:sleep_app/constants/app_dimensions.dart";
-import "package:sleep_app/extensions/context_extensions.dart";
-import "package:sleep_app/features/questions/business/questions_service.dart";
-import "package:sleep_app/gen/assets.gen.dart";
-import "package:sleep_app/navigation/app_router.dart";
-import "package:sleep_app/theme/app_colors.dart";
+
+import "../../../constants/app_dimensions.dart";
+import "../../../extensions/context_extensions.dart";
+import "../../../gen/assets.gen.dart";
+import "../../../navigation/app_router.dart";
+import "../../../theme/app_colors.dart";
+import "../business/questions_service.dart";
 
 @RoutePage()
 class QuestionsScreen extends StatelessWidget {
@@ -230,6 +231,7 @@ class QuestionsScreen extends StatelessWidget {
                           false) {
                         final formData = formKey.currentState!.value;
 
+                        print(formData["sleep_rate"]);
                         await QuestionsService.submitSurveyResponse(
                           formData["bedtime"],
                           formData["go_sleep_time"],
@@ -244,13 +246,14 @@ class QuestionsScreen extends StatelessWidget {
                                 int.parse(formData["awakening_time_total"]),
                           ),
                           SleepScore2.fromJson(
-                            switch (formData["sleep_rate"]) {
-                              "0" => "zero",
-                              "1" => "one",
-                              "2" => "two",
-                              "3" => "three",
-                              "4" => "four",
-                              "5" => "five",
+                            switch (
+                                (formData["sleep_rate"] as double).toInt()) {
+                              0 => "zero",
+                              1 => "one",
+                              2 => "two",
+                              3 => "three",
+                              4 => "four",
+                              5 => "five",
                               _ => "zero",
                             },
                           ),
