@@ -59,8 +59,8 @@ class AlarmService {
 
     await FlutterLocalNotificationsPlugin().show(
       0,
-      "Badanie snu!",
-      "Czas wypełnić formularz snu.",
+      "Dziennik snu!",
+      "Czas wypełnić formularz o twoim dzisiejszym śnie.",
       platformChannelSpecifics,
     );
   }

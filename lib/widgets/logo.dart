@@ -9,7 +9,7 @@ class TextLogo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-      "Badanie snu",
+      "Dziennik snu",
       style: Theme.of(context).textTheme.headlineMedium,
     );
   }

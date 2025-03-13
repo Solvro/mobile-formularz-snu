@@ -2,7 +2,7 @@
     <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
 
     <application
-        android:label="Badanie snu"
+        android:label="Dziennik snu"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <service android:name="com.gdelataillade.alarm.services.NotificationOnKillService" />
