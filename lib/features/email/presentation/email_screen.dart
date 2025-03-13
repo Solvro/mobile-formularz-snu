@@ -2,14 +2,14 @@ import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
 import "package:flutter_form_builder/flutter_form_builder.dart";
 import "package:form_builder_validators/form_builder_validators.dart";
-import "package:sleep_app/features/email/presentation/wrong_email_dialog.dart";
-import "package:sleep_app/widgets/footer.dart";
 
 import "../../../constants/app_dimensions.dart";
 import "../../../extensions/context_extensions.dart";
 import "../../../navigation/app_router.dart";
 import "../../../theme/app_colors.dart";
+import "../../../widgets/footer.dart";
 import "../business/email_service.dart";
+import "wrong_email_dialog.dart";
 
 const emailRegexPattern =
     r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+";
@@ -26,7 +26,7 @@ class EmailScreen extends StatelessWidget {
       if (_formKey.currentState?.saveAndValidate() ?? false) {
         final String email = _formKey.currentState?.value["email"] ?? "";
 
-        final success = await EmailService.tryToEnroll(email);
+        final success = await EmailService.tryToEnroll(email.trim());
 
         if (!context.mounted) return;
 
