@@ -1,12 +1,15 @@
 import "dart:async";
+import "dart:io";
 
 import "package:auto_route/auto_route.dart";
+import "package:external_app_launcher/external_app_launcher.dart";
 import "package:flutter/material.dart";
 import "package:flutter_hooks/flutter_hooks.dart";
-import "package:sleep_app/constants/app_dimensions.dart";
-import "package:sleep_app/extensions/context_extensions.dart";
-import "package:sleep_app/features/alarm/data/alarm_cache_repository.dart";
-import "package:sleep_app/navigation/app_router.dart";
+
+import "../../../constants/app_dimensions.dart";
+import "../../../extensions/context_extensions.dart";
+import "../../../navigation/app_router.dart";
+import "../data/alarm_cache_repository.dart";
 
 class AlarmInfo extends HookWidget {
   const AlarmInfo();
@@ -64,7 +67,18 @@ class AlarmInfo extends HookWidget {
           const SizedBox(height: AppDimensions.heightMedium),
           OutlinedButton(
             onPressed: () {
-              unawaited(context.router.push(const AlarmRoute()));
+              if (Platform.isIOS) {
+                unawaited(
+                  LaunchApp.openApp(
+                    iosUrlScheme: "clock:",
+                    appStoreLink:
+                        "itms-apps://itunes.apple.com/us/app/clock/id1584215688",
+                    openStore: true,
+                  ),
+                );
+              } else {
+                unawaited(context.router.push(const AlarmRoute()));
+              }
             },
             child: data.isEnabled
                 ? const Text("Zmień alarm")
