@@ -20,16 +20,28 @@ class QuestionsService {
     await QuestionsRepository().submitSurveyResponse(
       inBedStartTime.copyWith(
         year: DateTime.now().year,
+        month: DateTime.now().month,
+        day: inBedStartTime.hour > wakeUpTime.hour
+            ? DateTime.now().day - 1
+            : DateTime.now().day,
       ),
       fallingAsleepTime.copyWith(
         year: DateTime.now().year,
+        month: DateTime.now().month,
+        day: fallingAsleepTime.hour > wakeUpTime.hour
+            ? DateTime.now().day - 1
+            : DateTime.now().day,
       ),
       wakeUpTime.copyWith(
         year: DateTime.now().year,
+        month: DateTime.now().month,
+        day: DateTime.now().day,
       ),
       midNightAwaikingsCount,
       outBedTime.copyWith(
         year: DateTime.now().year,
+        month: DateTime.now().month,
+        day: DateTime.now().day,
       ),
       totalMidNightAwaikingsTime,
       sleepQuality,
