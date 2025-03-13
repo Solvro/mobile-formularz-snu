@@ -60,8 +60,10 @@ class AlarmInfo extends HookWidget {
               textAlign: TextAlign.center,
             ),
           if (!data.isEnabled)
-            const Text(
-              "Alarm jest wyłączony. Ustaw alarm, aby otrzymywać przypomnienie.",
+            Text(
+              Platform.isIOS
+                  ? "Pamiętaj, aby ustawić alarm w aplikacji Zegar. Zalecamy ustawienie alarmu na maksymalnie 60 minut po pobudce."
+                  : "Alarm jest wyłączony. Ustaw alarm, aby otrzymywać przypomnienie.",
               textAlign: TextAlign.center,
             ),
           const SizedBox(height: AppDimensions.heightMedium),
