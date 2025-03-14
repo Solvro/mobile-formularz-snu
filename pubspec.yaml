@@ -1,5 +1,5 @@
 name: sleep_app
-description: "A new Flutter project."
+description: "Dziennik snu, formularz snu który zbiera dane do badania nad snem"
 publish_to: "none"
 
 version: 1.0.0+1
