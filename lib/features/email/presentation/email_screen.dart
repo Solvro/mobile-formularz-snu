@@ -24,9 +24,10 @@ class EmailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     Future<void> onSubmitEmail() async {
       if (_formKey.currentState?.saveAndValidate() ?? false) {
-        final String email = _formKey.currentState?.value["email"] ?? "";
+        final String email =
+            (_formKey.currentState?.value["email"] as String? ?? "").trim();
 
-        final success = await EmailService.tryToEnroll(email.trim());
+        final success = await EmailService.tryToEnroll(email);
 
         if (!context.mounted) return;
 
