@@ -43,6 +43,7 @@ class MyApp extends StatelessWidget {
       ],
       locale: const Locale("pl", "PL"),
       theme: customTheme,
+      debugShowCheckedModeBanner: false,
     );
   }
 }
