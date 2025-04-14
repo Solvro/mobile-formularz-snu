@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM ubuntu:latest AS builder
 
 RUN apt-get update && apt-get install -y \
     curl \
@@ -14,13 +14,16 @@ RUN flutter doctor
 RUN flutter channel stable
 RUN flutter upgrade
 
+# Clone project and build it
+WORKDIR /app
+COPY . .
 RUN flutter build web --release
 
 
-FROM nginx:alpine
+FROM nginx:alpine as nginx
 
-# Copy the built Flutter web app to the nginx html directory
-COPY build/web /usr/share/nginx/html
+# Copy the built Flutter web app from the builder stage to nginx html directory
+COPY --from=builder /app/build/web /usr/share/nginx/html
 
 # Optional: Copy custom nginx configuration
 # COPY nginx.conf /etc/nginx/conf.d/default.conf
