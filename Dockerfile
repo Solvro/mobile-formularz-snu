@@ -17,6 +17,11 @@ RUN flutter upgrade
 # Clone project and build it
 WORKDIR /app
 COPY . .
+
+# Create .env file with TOKEN from build arg
+ARG TOKEN
+RUN echo "TOKEN=${TOKEN}" > .env
+
 RUN dart run build_runner build -d
 RUN flutter build web --release
 
