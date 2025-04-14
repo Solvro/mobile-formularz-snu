@@ -17,6 +17,7 @@ RUN flutter upgrade
 # Clone project and build it
 WORKDIR /app
 COPY . .
+RUN dart run build_runner build -d
 RUN flutter build web --release
 
 
