@@ -3,6 +3,7 @@ import "dart:io";
 
 import "package:auto_route/auto_route.dart";
 import "package:external_app_launcher/external_app_launcher.dart";
+import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
 import "package:flutter_hooks/flutter_hooks.dart";
 
@@ -61,31 +62,32 @@ class AlarmInfo extends HookWidget {
             ),
           if (!data.isEnabled)
             Text(
-              Platform.isIOS
+              kIsWeb || Platform.isIOS
                   ? "Pamiętaj, aby ustawić alarm w aplikacji Zegar. Zalecamy ustawienie alarmu na maksymalnie 60 minut po pobudce."
                   : "Alarm jest wyłączony. Ustaw alarm, aby otrzymywać przypomnienie.",
               textAlign: TextAlign.center,
             ),
           const SizedBox(height: AppDimensions.heightMedium),
-          OutlinedButton(
-            onPressed: () {
-              if (Platform.isIOS) {
-                unawaited(
-                  LaunchApp.openApp(
-                    iosUrlScheme: "clock:",
-                    appStoreLink:
-                        "itms-apps://itunes.apple.com/us/app/clock/id1584215688",
-                    openStore: true,
-                  ),
-                );
-              } else {
-                unawaited(context.router.push(const AlarmRoute()));
-              }
-            },
-            child: data.isEnabled
-                ? const Text("Zmień alarm")
-                : const Text("Ustaw alarm"),
-          ),
+          if (!kIsWeb)
+            OutlinedButton(
+              onPressed: () {
+                if (Platform.isIOS) {
+                  unawaited(
+                    LaunchApp.openApp(
+                      iosUrlScheme: "clock:",
+                      appStoreLink:
+                          "itms-apps://itunes.apple.com/us/app/clock/id1584215688",
+                      openStore: true,
+                    ),
+                  );
+                } else {
+                  unawaited(context.router.push(const AlarmRoute()));
+                }
+              },
+              child: data.isEnabled
+                  ? const Text("Zmień alarm")
+                  : const Text("Ustaw alarm"),
+            ),
         ],
       ),
     );
