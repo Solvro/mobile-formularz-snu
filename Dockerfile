@@ -20,7 +20,7 @@ COPY . .
 RUN flutter build web --release
 
 
-FROM nginx:alpine as nginx
+FROM nginx:alpine AS nginx
 
 # Copy the built Flutter web app from the builder stage to nginx html directory
 COPY --from=builder /app/build/web /usr/share/nginx/html
