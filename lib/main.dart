@@ -1,6 +1,7 @@
 import "dart:async";
 
 import "package:alarm/alarm.dart";
+import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
 import "package:flutter/services.dart";
 import "package:flutter_localizations/flutter_localizations.dart";
@@ -17,7 +18,9 @@ Future<void> main() async {
   );
 
   setupDependencyInjection();
-  await Alarm.init();
+  if (!kIsWeb) {
+    await Alarm.init();
+  }
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);
